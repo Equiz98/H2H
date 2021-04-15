@@ -14,8 +14,7 @@
    <body>
     <div id="Page">
     
-         <!-- Header -->
-    <div id="Brand">
+      <div id="Brand">
         <!-- Logo de H2H -->
         <svg width="315" height="61" viewBox="0 0 315 61" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M11.4991 1.51433C10.7887 0.791862 1.7308 0.61251 0.842773 1.51433V36.7355C0.842773 37.6386 12.3871 37.6386 12.3871 36.7355V24.0924H22.1554V36.7355C22.1554 37.6386 33.6998 37.6386 33.6998 36.7355V1.51542C32.9894 0.792959 23.0435 0.612344 22.1554 1.51542V14.1587H11.4991V1.51433Z" fill="white"></path>
@@ -60,8 +59,8 @@
 
         <div class="anomalias-menu"> <!-- contenedor de reportes y nuevas anomalias -->
             <div class="nuevas-anomalias">
-                <p class="nuevas-anomalias-texto">Nuevas anomalias</p>
-                <p>(33)</p><script></script> <!-- Este script llama al numero de anomalias --> 
+                <p class="nuevas-anomalias-texto">Nuevas anomalias (33)</p>
+                <p></p><script></script> <!-- Este script llama al numero de anomalias --> 
                 <svg width="30" height="24" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M38.5183 25.6032L25.068 2.92252C24.5242 2.0574 23.7748 1.34543 22.8891 0.852261C22.0035 0.359089 21.0099 0.100586 20.0001 0.100586C18.9903 0.100586 17.9967 0.359089 17.111 0.852261C16.2254 1.34543 15.476 2.0574 14.9321 2.92252L1.48193 25.6032C1.00679 26.4085 0.748544 27.3269 0.733153 28.2659C0.717761 29.2049 0.945766 30.1314 1.39424 30.9524C1.91275 31.8765 2.66326 32.6441 3.56908 33.1767C4.4749 33.7092 5.50353 33.9877 6.54987 33.9837H33.4503C34.4898 33.9949 35.5138 33.7272 36.419 33.2075C37.3242 32.6879 38.0785 31.9346 38.6059 31.0238C39.0676 30.1942 39.3029 29.2544 39.2875 28.3014C39.2721 27.3484 39.0065 26.4169 38.5183 25.6032ZM35.5371 29.2585C35.3264 29.6269 35.0205 29.9296 34.6527 30.1339C34.2848 30.3382 33.869 30.4363 33.4503 30.4175H6.54987C6.13115 30.4363 5.71535 30.3382 5.34752 30.1339C4.97969 29.9296 4.67383 29.6269 4.46307 29.2585C4.30916 28.9875 4.22813 28.68 4.22813 28.367C4.22813 28.054 4.30916 27.7465 4.46307 27.4754L17.9308 4.77692C18.1728 4.45187 18.4856 4.18826 18.8446 4.00676C19.2037 3.82526 19.5991 3.7308 20.0001 3.7308C20.401 3.7308 20.7965 3.82526 21.1556 4.00676C21.5146 4.18826 21.8274 4.45187 22.0694 4.77692L35.5196 27.4576C35.6794 27.7292 35.7653 28.0392 35.7684 28.3556C35.7715 28.6721 35.6917 28.9838 35.5371 29.2585Z" fill="white"/>
                   <path d="M20.0021 26.8513C20.9708 26.8513 21.7562 26.053 21.7562 25.0682C21.7562 24.0835 20.9708 23.2852 20.0021 23.2852C19.0334 23.2852 18.248 24.0835 18.248 25.0682C18.248 26.053 19.0334 26.8513 20.0021 26.8513Z" fill="white"/>
@@ -96,13 +95,13 @@
             
         </div>
        
-          <form id="Frm01" method="post"> <!-- Menu del FrontBar -->
+          <form id="Frm01-FrontBar" method="post"> <!-- Menu del FrontBar -->
             <input name="__RequestVerificationToken" type="hidden" value="gNso8vBTKVe6bG2d8LkcOlrdf4nU5IY-UuDOY5y5eyZ_nx7NqoEdhYVsY2e2i21Oxf_-GbxjQMziHWdstWKn8T67K-A4zc5JqB39Dn3wRXsN3Lri8sKOI_yJVRGOZkUzVH8hHi0Fet9FCWRC4lljYebJ0p2yOQq62jkFhzFT8LM1">
-            <div class="Frm01-ContenedorColumns">
-              <div class="FieldRow">
+            <div class="Frm01-ContenedorColumnsFB">
+              <div class="FieldRowFB">
                 <!-- EMPRESAS -->
-                <div class="FieldLabel">&nbsp;</div>
-                <div class="FieldValue">
+                <div class="FieldLabelaout">&nbsp;</div>
+                <div class="FieldValueFB">
                   <select id="EmpresasList" name="EmpresasList" onchange="EmpresaChange();">
                     
                     <option value="0">Selecciona una empresa</option>
@@ -110,28 +109,28 @@
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">No. Tracking:&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">No. Tracking:&nbsp;</div>
+                <div class="FieldValueFB">
                   <input id="NoTracking" name="NoTracking" type="text" value="">
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">ODT/PO:&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">ODT/PO:&nbsp;</div>
+                <div class="FieldValueFB">
                   <input id="NoGuia" name="NoGuia" type="text" value="">
                 </div>
               </div>
             </div>
   
-            <div class="Frm01-ContenedorColumns">
+            <div class="Frm01-ContenedorColumnsFB">
               <!-- Cree este div para crear la columna del medio de opciones como en el prototipo. Antes este div padre de No.Tracking/ODTPO/No.Foraneo no existia y los elementos hijos estaban arriba dentro del div padre de EMPRESAS -->
   
-              <div class="FieldRow">
+              <div class="FieldRowFB">
                 <!-- CONTRATOS -->
-                <div class="FieldLabel">&nbsp;</div>
-                <div class="FieldValue">
+                <div class="FieldLabelout">&nbsp;</div>
+                <div class="FieldValueFB">
                   <select id="ContratosList" name="ContratosList">
                     <!-- Agregue 50px de width y agregue la propiedad de color -->
                     <option value="0">Selecciona un contrato</option>
@@ -142,30 +141,29 @@
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">No. Foraneo:&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">No. Foraneo:&nbsp;</div>
+                <div class="FieldValueFB">
                   <input id="NoForaneo" name="NoForaneo" type="text" value="">
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">Nombre :&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">Nombre :&nbsp;</div>
+                <div class="FieldValueFB">
                   <input id="Nombre" name="Nombre" type="text" value="">
                 </div>
               </div>
             </div>
-            <div class="Frm01-ContenedorColumns">
-              <!-- style="width:50%; float:left;" -->
+            <div class="Frm01-ContenedorColumnsFB">
+
   
-              <div class="FieldRow">
+              <div class="FieldRowFB">
                 <!-- ESTATUS -->
-                <!-- Movi estatus desde el div de abajo ha este div de empresas para poder ubicarlo en la fila de arriba como en el prototipo -->
-                <div class="FieldLabel">&nbsp;</div>
-                <div class="FieldValue">
+                <div class="FieldLabelout">&nbsp;</div>
+                <div class="FieldValueFB">
                   <select id="EstatusList" name="EstatusList">
-                    <!-- Agregue 50px de width y agregue la propiedad de color -->
+                    
                     <option value="0">Selecciona un Evento</option>
                     <option value="1">Creación</option>
                     <option value="2">Recibido mensajeria</option>
@@ -190,22 +188,22 @@
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">Fecha Inicial :&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">Fecha Inicial: &nbsp;</div>
+                <div class="FieldValueFB">
                   <input class="DTP hasDatepicker" type="datetime" id="FechaIni" name="FechaIni" value="">
                 </div>
               </div>
   
-              <div class="FieldRow">
-                <div class="FieldLabel">Fecha Final :&nbsp;</div>
-                <div class="FieldValue">
+              <div class="FieldRowFB">
+                <div class="FieldLabelFB">Fecha Final: &nbsp;</div>
+                <div class="FieldValueFB">
                   <input class="DTP hasDatepicker" type="datetime" id="FechaFin" name="FechaFin" value="">
                 </div>
               </div>
             </div>
   
-            <div class="ActionRow">
+            <div class="ActionRowFB">
               <svg width="49" height="55" viewBox="0 0 49 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M31.9578 0.0693359H22.4532C20.9503 0.0693817 19.5001 0.627803 18.3799 1.63784C17.2598 2.64788 16.5481 4.03867 16.3811 5.54432H11.5908C9.97034 5.54432 8.41621 6.19325 7.27035 7.34835C6.12448 8.50346 5.48074 10.0701 5.48074 11.7037V22.243C8.35682 20.7614 11.6319 20.2595 14.8148 20.8126C17.9977 21.3658 20.917 22.9441 23.1349 25.311C25.3529 27.6779 26.7499 30.7057 27.1166 33.9406C27.4833 37.1755 26.7999 40.443 25.1688 43.2533L31.2436 49.3798C31.9373 50.0782 32.3998 50.9759 32.5675 51.9497C32.7352 52.9236 32.6 53.9258 32.1805 54.8192H42.8202C43.6226 54.8192 44.4171 54.6598 45.1584 54.3503C45.8997 54.0408 46.5733 53.5871 47.1407 53.0151C47.7081 52.4432 48.1581 51.7642 48.4652 51.0169C48.7723 50.2696 48.9303 49.4687 48.9303 48.6598V11.7037C48.9303 10.8948 48.7723 10.0939 48.4652 9.34659C48.1581 8.5993 47.7081 7.9203 47.1407 7.34835C46.5733 6.7764 45.8997 6.32271 45.1584 6.01317C44.4171 5.70363 43.6226 5.54432 42.8202 5.54432H38.0299C37.8629 4.03867 37.1513 2.64788 36.0311 1.63784C34.9109 0.627803 33.4607 0.0693817 31.9578 0.0693359ZM22.4532 4.17557H31.9578C32.498 4.17557 33.016 4.39188 33.398 4.77692C33.7799 5.16195 33.9945 5.68417 33.9945 6.22869C33.9945 6.77321 33.7799 7.29543 33.398 7.68047C33.016 8.0655 32.498 8.28181 31.9578 8.28181H22.4532C21.9131 8.28181 21.395 8.0655 21.0131 7.68047C20.6311 7.29543 20.4165 6.77321 20.4165 6.22869C20.4165 5.68417 20.6311 5.16195 21.0131 4.77692C21.395 4.39188 21.9131 4.17557 22.4532 4.17557ZM21.6385 43.5681C23.605 41.2 24.6173 38.1737 24.4751 35.0888C24.3328 32.0039 23.0463 29.0854 20.8704 26.9114C18.6944 24.7375 15.7879 23.4667 12.7265 23.3509C9.6651 23.235 6.6722 24.2825 4.34073 26.2859C2.00925 28.2893 0.509284 31.1024 0.137975 34.1678C-0.233335 37.2333 0.551104 40.3276 2.33589 42.8376C4.12067 45.3477 6.7756 47.0903 9.7747 47.7205C12.7738 48.3506 15.8983 47.8222 18.5292 46.2399L26.4452 54.2169C26.6316 54.4186 26.8565 54.5804 27.1063 54.6926C27.3561 54.8049 27.6258 54.8652 27.8993 54.8701C28.1728 54.8749 28.4444 54.8242 28.698 54.721C28.9516 54.6177 29.182 54.464 29.3754 54.269C29.5688 54.0741 29.7213 53.8418 29.8237 53.5862C29.9261 53.3305 29.9764 53.0567 29.9716 52.781C29.9668 52.5054 29.9069 52.2335 29.7956 51.9816C29.6843 51.7298 29.5238 51.5031 29.3237 51.3152L21.6385 43.5681ZM12.2697 43.8692C10.1091 43.8692 8.0369 43.004 6.50908 41.4638C4.98126 39.9237 4.12294 37.8348 4.12294 35.6567C4.12294 33.4786 4.98126 31.3898 6.50908 29.8496C8.0369 28.3095 10.1091 27.4443 12.2697 27.4443C14.4304 27.4443 16.5026 28.3095 18.0304 29.8496C19.5582 31.3898 20.4165 33.4786 20.4165 35.6567C20.4165 37.8348 19.5582 39.9237 18.0304 41.4638C16.5026 43.004 14.4304 43.8692 12.2697 43.8692Z" fill="#878787"></path>
               </svg>
@@ -216,7 +214,7 @@
                 width="49px"
                 height="55px"
               /> -->
-              <div class="Button" onclick="Buscar();">Realizar Consulta</div>
+              <div class="Button" onclick="Buscar();"> <a href="#">Realizar Consulta</a> </div>
             </div>
           </form>
   
@@ -226,56 +224,81 @@
   <div class="Division"></div>
   <!-- agrego div para dividir las pantallas -->
      
-     <div id="Cnt">
+     
+  <div id="Cnt">
       
   
   
   
-  <div id="MnuContainer" class="MenuContainer">
-   <div id="Cnt00" class="MenuContent">
+  <div id="MnuContainer" class="MenuContainerNuevasAnomalias">
+   <div id="Cnt00" class="MenuContentNuevasAnomalias">
     <div class="ContainerTitle">Nuevas Anomalias por revisar
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="30" viewBox="0 0 167 142">
             <image id="Capa_1" data-name="Capa 1" x="3" width="162" height="142" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKIAAACOCAYAAACynNNWAAAE80lEQVR4nO2d7XbiMAwFw559zr7/W7DntKWb0Hw4tmVfSTN/m0KwhiuUBPL4+PhYoJjnjW0fLGs5f73s6CTuiPfO+/8i5gmIuE+LgFePiZA7IOIWCwGPngMhV/yR2ZP5jJBwzejnk4ZEnCsE6fhN9kRUSaX06ZhZRLXip5Yxq4iqRU8rY0YR1YudUsbsnxFBhGwiekmbdKmYSURvxU0lI60ZJMgiotd0SZOKJCJIkOEUn1Wq7J2Ws7pqJ/wpwOiJaCHG40SMs7+1EL5Fc9FDOXcEe22b/hxyKZETsacEtSnXMx1DS82wck2rTOkv8SohqohR0yNsKkYUUaElWz3OElVGWjNIEE1ExTS0eLxwqUgi7mM1YDC4HBBJxGzH7EK93igiKrdky8cPIyOtGSSIIKKnNLR4nhCpSCL+Z/QgweCywruIXFTwhft1IBG/mJVOpOI3nkUkDbe4Xg+vInocUEY8v1sZs7dmldaYvkV7FJGWfI7L9cmciGoplDoVvYlIGpbhbp08iRhpQDki7eCSsTWrt8CULdqLiLTkOtysW7ZE9JI26VLRg4ikYRsu1k9dxAwDyhGpBhd+cqSOs8KmP0tSg3IiKqbhs2C/SrYpJU0qZhhWekpouf0RKRJWVUQGFBtk11VRRNWWPPL/3gnforNfBgYiqImY+XDNFaFTMWoiRv2AH3ZwURKRAWUsUuutIiItuZyQLZphBSRQEJE0vE+4VIyUiNnO8YZ6vbNFZEDRYHodoiRi1itewrzumSKShlpMrccsERlQ+hFicPHemrNL+ML9OswQkZaszZT6eE5E0nCL6/UYLSJp6IPhdRopIgOKPW4HF4+tGQnPcbk+o0SkJftkWN28JSJpWIa7dRohImnomyH1sxaRAWUergYXL60ZCYNjKSIteT5uUtFDIpKGbbhYPysRScOYmNXVQkQGFD3kWzTf4gMJeotIGuoinYqqiYiENsiua08RGVBy0bXevUSkJftBskUzrIAEPUQkDf0hl4pKiYiEY5Fa71YRGVBg6eGBSiJGvWMod0ItpEVE0hDWNPlQK2LGAeXufma8E2q1F7Nbs8cbNV7tc8k2akzf35qbQtKSmfDPeNasz8xEpJhaTK3HXRFJQyjhtid3ROQMSnymDS4zWjMSajOlPqUi0pKhhmJvRiciaeiD4XUqOXxDGv7mbE14s20pOpxzlYgMKFueBWtSso0Hhg4uo1pzFAktt1dkWN3ORKQlQ09OfRqRiBnTsPX/lBhSvyMRSUOw4NCrPREZUOAd88GFb/GBBO8ikoZwhGkqWiUiEsbErK5rERlQYCQb3ywSkTSMjUl9XyKShudE/TrpbH68652IkRc+6rf4auj+2v50TMMM7/7S18halPPpX823+LKzLsD6TUwbbqCXiFmLkF2+R8RfA4PE9BAxeypkp0v9SUSQoFVE0hCWDh48SUSQABFBAn66GHrQ6sGDRAQJ1G5vAf7ggDbEodcpvte7gsM5eeh+Lz75m0qDHN3rbHH1DVekxMQqZD4dsb4MjISEIl7DCskFM/jxjqkZJFiLSCrCSDa+kYggwbuIpCKM4Jdne4mIjGDJrl9HrRkZwYJDr84+IyIj9OTUp6thBRmhB823t1iQERop8qf08A0yQg3F3tw51/x6UM4fwxW3g6vmogeEhCOqO2fL1TdHP0YEuWj/2LYsyz87pbJeIoB44AAAAABJRU5ErkJggg=="/>
           </svg>
             
     </div> <!-- Titulo de pantalla nuevas anomalias y svg -->
-    <div class="ResultGroup">
+
+    <div class="contenedorListandboton">
+    <div class="FieldLabelaout">&nbsp;</div>
+                <div class="FieldValueEmpresasAnomalias">
+                  <select id="EmpresasListNA" name="EmpresasList" onchange="EmpresaChange();">
+                    <option value="0">Todas las Empresas</option>
+                  </select>
+                </div>
+              
+
+              <div class="LButtonNuevasAnomalias" onclick="document.getElementById('Frm01').submit();">Ir
+              </div>
+
+              <div class="LButtonImportarNuevasAnomalias" onclick="document.getElementById('').submit();">Importar Anomalias
+
+                <svg width="20" height="26" viewBox="0 0 26 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.344 0.688477L24.2365 13.278H17.4818L17.4818 24.2411H9.40036L9.40035 13.278H2.45148L13.344 0.688477ZM0.765625 31.2013L25.9208 31.2013V28.2013L0.765625 28.2013L0.765625 31.2013Z" fill="#878787"/>
+                  </svg>
+              </div>
+            </div>
+</div>
+    <div class="ResultGroupNA">
      <div>
       <div class="ResultRow">
   
        <div class="ColumnAction"></div>
-       <div class="ResultColumnAnomalias ColumnMidSize">Anomalia</div>
+       <!-- <div class="ResultColumnAnomalias ColumnMidSize">Anomalia</div> -->
+       <div class="ResultColumnEmpresas ColumnMidSize">Empresa</div>
        <div class="ColumnAction"></div>
-       <div class="ResultColumnEnvio ColumnMidSize">Envio</div>
+       <div class="ResultColumnRazon ColumnMidSize">Razón de Anomalia</div>
        <div class="ColumnAction"></div>
-       <div class="ResultColumnRazon ColumnMidSize">Razon</div>
+       <div class="ResultColumnEnvio ColumnMidSize">Envio / No.Tracking</div>
        <div class="ColumnAction"></div>
+       
        <div class="ResultColumnReporte ColumnMidSize">Fecha de Reporte</div>
        <div class="ColumnAction"></div>
-       <div class="ResultColumnTracking ColumnMidSize">Numero de Tracking</div>
-       <div class="ColumnAction"></div>
+       
        <div class="ResultColumnComentarios ColumnMidSize">Comentarios</div>
       </div>
+
       <div class="ResultRowtable" onmouseover="$(this).css('background-color','#F4530290');" onmouseout="$(this).css('background-color','#e1e2e3');">
+
+        <div class="ResultCellEmpresas">Edenret</div>
+        <div class="ResultCellRazon">Calle: Av. Industrias Oriente Núm. Ext. 30 Col. Panzacola Municipio/Localidad : Tlaxcala Estado : Tlaxcala C. P. 90796 Persona que recibe: Adriana Morales Número de contacto: 2221400044</div>
     
-       <div class="ResultCellAnomalias">Calle: Av. Industrias Oriente Núm. Ext. 30 Col. Panzacola Municipio/Localidad : Tlaxcala Estado : Tlaxcala C. P. 90796 Persona que recibe: Adriana Morales Número de contacto: 2221400044</div>
+      
        <div class="ResultCellEnvio"> 
         <div class="ColumnAction"><a href="/System/Envio/912775">
             <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.96762 0.767578C7.66474 0.767578 6.66134 1.85489 6.66134 3.155C6.66134 4.40724 6.65257 5.50287 6.65257 5.50287H4.33601C4.2924 5.50287 4.25022 5.50769 4.20861 5.51459H3.56431V7.76579H14.3709V5.51459H13.7266C13.685 5.50769 13.6428 5.50287 13.5992 5.50287H11.2827C11.2827 5.50287 11.3091 4.51107 11.3091 3.16232C11.3091 1.91007 10.2705 0.767578 8.96762 0.767578ZM0.474609 3.05101V24.7648H17.4606V3.05101H12.0793V4.62407H15.9055V23.1888H2.03118V4.62407H5.85595V3.05101H0.474609ZM8.96762 3.08029C9.39447 3.08029 9.73932 3.42385 9.73932 3.84924C9.73932 4.27541 9.39447 4.61965 8.96762 4.61965C8.54078 4.61965 8.19592 4.27539 8.19592 3.84924C8.19592 3.42387 8.54078 3.08029 8.96762 3.08029ZM3.56431 9.29199V10.0624H4.33601V9.29199H3.56431ZM5.88085 9.30663V10.077H14.3709V9.30663H5.88085ZM3.56431 12.1979V12.9683H4.33601V12.1979H3.56431ZM5.88085 12.2125V12.9844H14.3709V12.2125H5.88085ZM3.56431 15.1038V15.8742H4.33601V15.1038H3.56431ZM5.88085 15.1199V15.8903H14.3709V15.1199H5.88085ZM3.56431 18.0112V18.7816H4.33601V18.0112H3.56431ZM5.88085 18.0273V18.7977H14.3709V18.0273H5.88085ZM3.56431 20.9171V21.6875H4.33601V20.9171H3.56431ZM5.88085 20.9332V21.7036H14.3709V20.9332H5.88085Z" fill="#5E5E5E"/>
             </svg></a></div>EDN17032100EL0116</div>
 
-       <div class="ResultCellRazon">Calle: Av. Industrias Oriente Núm. Ext. 30 Col. Panzacola Municipio/Localidad : Tlaxcala Estado : Tlaxcala C. P. 90796 Persona que recibe: Adriana Morales Número de contacto: 2221400044</div>
-
        <div class="ResultCellReporte">2021/04/12 12:33 PM</div>
 
-       <div class="ResultCellTracking">EDN17032100EL0116</div>
+       
 
        <div class="ResultCellComentario">
-       <div style="float:left; font-weight:bold; padding-left: 6%; color:#5e5e5e;">paulina :&nbsp;</div>
+       <div style="font-weight:bold; color:#5e5e5e;">paulina:&nbsp;</div>
 
-       <div style="float:left;">
-        <div style="clear:both; padding-left: 6%; color:#5e5e5e;">Referencias: Blanco con una enredadera amarilla </div>
+       <div>
+        <div style="color:#5e5e5e;">Referencias: Blanco con una enredadera amarilla </div>
         <div style="clear:both;  text-align:right; font-size:12px; font-weight:bold; color:#5e5e5e;">4/12/2021 5:34:00 PM</div>
        </div>
     </div>
