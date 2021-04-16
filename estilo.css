@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    background-image: url(./Fondo.jpg);
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.logo {
+    position: relative;
+    top: 100px;
+    left: 200px;
+}
+
+h1 {
+    font-family: Pluto;
+    font-size: 33px;
+    position: relative;
+    top: 130px;
+    left: 26%;
+    color: #5E5E5E;
+}
+
+h2 {
+    font-family: Pluto;
+    font-size: 26px;
+    font-weight: normal;
+    position: relative;
+    top: 145px;
+    left: 17%;
+    color: #5E5E5E;
+}
+
+form {
+    display: block;
+    margin: 10px;
+    position: relative;
+    top: 170px;
+    left: 25%;
+    justify-content: center;
+}
+
+.button {
+}
+
+div {
+    color: #5E5E5E;
+    font-family: Roboto;
+    font-weight: bolder;
+    position: relative;
+    top: 185px;
+    left: 25%;
+}
