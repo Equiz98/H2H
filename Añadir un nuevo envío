@@ -1,0 +1,237 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+  <meta name="description" content="Servicios personalizados de mensajeria." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/Content/Default.css" rel="stylesheet" type="text/css" />
+  <link href="/Content/Media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+  <title>Hand2Hand Logistics</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+  <script src="/Content/Utilities.js" ></script>
+  
+ </head>
+ <body>
+  <div id="Page">
+   <div id="Brand"><img alt="Logo" src="/Content/Media/Logo.jpg" /></div>
+   <div id="Nav">
+    
+    
+    <ul>
+     <li Class="First"><a href="/System/Home.vbhtml">Inicio</a></li>
+     <li> <a href="/System/Operation"> Operación</a></li>
+     <li> <a href="/System/Querys"> Consultas</a></li>
+     <li> <a href="/System/Management">Administración</a></li>
+     <li> <a href="/System/Logout">Logout</a></li>
+    </ul>
+   
+
+
+   </div>
+   <div id="Cnt">
+    
+
+
+
+<form id="Frm01" method="post">
+ <input name="__RequestVerificationToken" type="hidden" value="__41mxXJ5VjA3dSw-3GazsipEk4W2ZC4FCMFKxsWP-dm2cfQi0kGa0ORH8HXuyNt0i2zDm1ABBQdR6UGivYwn_BmrVnsAaP83xfOHW9aKKZxDtsFB5aV0YCol7WtHIe_r86NiPIv96w7bF2QUaDv4nHmJspFWalKgUgnVaE2LEs1" />
+    
+    <div id="VMenu" Class="Menu">
+        <ul>
+         <li ><a href="/System/Empresas"> Empresas</a></li>
+         <li ><a href="/System/Contratos"> Contratos</a></li>
+         <li   Class="MenuSelected"  ><a href="/System/Envios"> Envios</a></li>
+         <li ><a href="/System/Anomalias"> Anomalias</a></li>
+         <li ><a href="/System/Imports"> Importación</a></li>
+         <li ><a href="/System/EventsUpdate"> Actualización</a></li>
+         <li ><a href="/System/ManageRutas"> Rutas</a></li>
+         <li ><a href="/System/BBITAdmin"> BestBuy <br /> Intertiendas</a></li>
+         <li ><a href="/System/Mifel_Sucursales"> Mifel <br /> Sucursales</a></li>
+         <li ><a href="/System/EmpresaImport"> Importación <br /> Empresa</a> </li>
+         <li ><a href="/System/Updates/Push2GOM"> Importación <br /> 2GOM Citas</a></li>
+         <li ><a href="/System/Updates/ContratoAsignacion"> Reasignación de  <br /> contrato</a></li>
+
+         <li ><a href="/Sepomex/Empresas"> SEPOMEX <br /> Empresas</a></li>
+         <li ><a href="/Sepomex/Import_Permissions"> SEPOMEX <br /> Usuarios</a></li>
+         <li ><a href="/Sepomex/Import_Data"> SEPOMEX <br /> Importación</a></li>
+         <li ><a href="/Sepomex/Export"> SEPOMEX <br /> Reporte</a></li>
+         <li ><a href="/System/Anomalias_Import.vbhtml"> Importación <br /> de anomalías</a></li>
+        </ul>
+    </div>
+   
+
+ <div id="MnuContainer" class="MenuContainer">
+  <div id="Cnt00" class="MenuContent"> 
+   <div class="ContainerTitle">Orden de envio</div>
+   <div class="Section_2Col">
+    <div class="Col1">
+     <div class="ColTitle">Datos generales<hr /></div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Empresa :&nbsp</div>
+  <div class="FieldValue">BES Servicios</div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Contrato :&nbsp</div>
+  <div class="FieldValue">BES STORI 16 ABRIL 21</div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel"> <span>*</span> No. Tracking :&nbsp</div>
+  <div class="FieldValue"><input id="NoTracking" name="NoTracking" type="text" value="" /></div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel"> ODT/PO :&nbsp</div>
+  <div class="FieldValue"><input id="NoGuia" name="NoGuia" type="text" value="" /></div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel"> No. Foraneo :&nbsp</div>
+  <div class="FieldValue"><input id="NoForaneo" name="NoForaneo" type="text" value="" /></div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel"> Tookan ID :&nbsp</div>
+  <div class="FieldValue"><input id="TookanID" name="TookanID" type="text" value="" /></div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel"> Recolecci&#243;n en :&nbsp</div>
+  <div class="FieldValue"><input id="GatherInformation" name="GatherInformation" type="text" value="" /></div>
+ </div>
+ 
+    </div>
+    <div class="Col1">
+     <div class="ColTitle">Observaciones<hr/></div>     
+     <div class="FieldRow">
+  <div class="FieldLabel"> Observaciones :&nbsp</div>
+  <div class="FieldValue"><textarea cols="20" id="Observaciones" name="Observaciones" rows="2"></textarea></div>
+ </div>
+
+    </div>
+   </div>
+   <div class="Section_2Col">
+    <div class="Col1">
+     <div class="ColTitle">Destinatario<hr/></div>
+      <div class="FieldRow">
+  <div class="FieldLabel"> <span>*</span> Nombre :&nbsp</div>
+  <div class="FieldValue"><input id="Nombre" name="Nombre" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> E-Mail :&nbsp</div>
+  <div class="FieldValue"><input id="EMail" name="EMail" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> C.P. :&nbsp</div>
+  <div class="FieldValue"><input id="CP" name="CP" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> Calle :&nbsp</div>
+  <div class="FieldValue"><input id="Calle" name="Calle" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> No. Exterior :&nbsp</div>
+  <div class="FieldValue"><input id="NoExterior" name="NoExterior" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> No. Interior :&nbsp</div>
+  <div class="FieldValue"><input id="NoInterior" name="NoInterior" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> Estado :&nbsp</div>
+  <div class="FieldValue"><input id="Estado" name="Estado" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> Municipio :&nbsp</div>
+  <div class="FieldValue"><input id="Municipio" name="Municipio" type="text" value="" /></div>
+ </div>
+  
+      <div class="FieldRow">
+  <div class="FieldLabel"> Colonia :&nbsp</div>
+  <div class="FieldValue"><input id="Colonia" name="Colonia" type="text" value="" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Direcci&#243;n :&nbsp</div>
+  <div class="FieldValue"><input id="Direccion" name="Direccion" type="text" value="" /></div>
+ </div>
+     
+      <div class="FieldRow">
+  <div class="FieldLabel"> Telefono :&nbsp</div>
+  <div class="FieldValue"><input id="Fijo" name="Fijo" type="text" value="" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Celular :&nbsp</div>
+  <div class="FieldValue"><input id="Celular" name="Celular" type="text" value="" /></div>
+ </div>
+
+     </div> 
+    <div class="Col1">
+     <div class="ColTitle">Descripcion<hr/></div>
+      <div class="FieldRow">
+  <div class="FieldLabel"> Contenido :&nbsp</div>
+  <div class="FieldValue"><input id="Contenido" name="Contenido" type="text" value="" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Cantidad :&nbsp</div>
+  <div class="FieldValue"><input id="Cantidad" name="Cantidad" type="text" value="0" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Empaque :&nbsp</div>
+  <div class="FieldValue"><input id="Empaque" name="Empaque" type="text" value="" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Valor :&nbsp</div>
+  <div class="FieldValue"><input id="Valor" name="Valor" type="text" value="0" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Peso :&nbsp</div>
+  <div class="FieldValue"><input id="Peso" name="Peso" type="text" value="0" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Alto :&nbsp</div>
+  <div class="FieldValue"><input id="Alto" name="Alto" type="text" value="0" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Ancho :&nbsp</div>
+  <div class="FieldValue"><input id="Ancho" name="Ancho" type="text" value="0" /></div>
+ </div>
+
+      <div class="FieldRow">
+  <div class="FieldLabel"> Largo :&nbsp</div>
+  <div class="FieldValue"><input id="Largo" name="Largo" type="text" value="0" /></div>
+ </div>
+ 
+    </div>
+   </div>
+   <div class="Section_2Col">
+    <div class="Button"><a href="/System/Envios">Cancelar</a></div>
+    <div class="Button" onclick="document.getElementById('Frm01').submit();">Crear</div>
+   </div>
+  </div>
+ </div>
+</form>  
+   </div>
+   <div id="Footer">Hand2Hand Logistics &copy; 2015</div>
+  </div>       
+ </body>
+</html>
