@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+  <meta name="description" content="Servicios personalizados de mensajeria." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/Content/Default.css" rel="stylesheet" type="text/css" />
+  <link href="/Content/Media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+  <title>Hand2Hand Logistics</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+  <script src="/Content/Utilities.js" ></script>
+  
+ <script>
+  function Contratos_Get() {
+   var Params = {};
+   Params.Empresa = $('#EmpresasList option:selected').val();
+   $('#ContratosList').empty();
+   $('#ResultsPanel').empty();
+   WebService_Get('Contratos_List', JSON.stringify(Params), function (Data) {
+    $('#ContratosList').append($('<option></option>').attr('value', 0).text('Selecciona un contrato'));
+    $.each(Data.Contratos, function (Key, Item) {
+     $('#ContratosList').append($('<option></option>').attr('value', Item.Key).text(Item.Value));
+    });
+   });
+   document.getElementById('Frm01').submit();
+  }
+  function EmpresaChange() {
+   $('<input>').attr({ type: 'hidden', id: 'Action', name: 'Action', value: 'LoadContratos' }).appendTo('Frm01');
+   document.getElementById('Frm01').submit();
+  }
+  function ContratoChange() {
+   $('#ResultsPanel').empty();
+  }
+  function Nav_Back() {
+   //$('#CurrentPage').val('If Rslt.CurrentPage = 1 Then <text>1</Text> else (Rslt.CurrentPage - 1) End If');
+   $('#CurrentPage').val('1');
+   $('<input>').attr({ type: 'hidden', id: 'Action', name: 'Action', value: 'Search' }).appendTo('#Frm01');
+   document.getElementById('Frm01').submit();
+  }
+  function Nav_Fowd() {
+   //$('#CurrentPage').val('If Rslt.CurrentPage = Rslt.NoPages Then Rslt.NoPages else (Rslt.CurrentPage + 1) End If');
+   $('#CurrentPage').val('2');
+   $('<input>').attr({ type: 'hidden', id: 'Action', name: 'Action', value: 'Search' }).appendTo('#Frm01');;
+   document.getElementById('Frm01').submit();
+  }
+ </script>
+
+ </head>
+ <body>
+  <div id="Page">
+   <div id="Brand"><img alt="Logo" src="/Content/Media/Logo.jpg" /></div>
+   <div id="Nav">
+    
+    
+    <ul>
+     <li Class="First"><a href="/System/Home.vbhtml">Inicio</a></li>
+     <li> <a href="/System/Operation"> Operación</a></li>
+     <li> <a href="/System/Querys"> Consultas</a></li>
+     <li> <a href="/System/Management">Administración</a></li>
+     <li> <a href="/System/Logout">Logout</a></li>
+    </ul>
+   
+
+
+   </div>
+   <div id="Cnt">
+    
+
+
+
+
+
+<form id="Frm01" method="post">
+ <input name="__RequestVerificationToken" type="hidden" value="uHM110odfNvzsTL9BCBFFCSW_Ja0UHGboKeMEIibYUmNySytz_nxoW4PJkBbbGYX655zeMGbb-5zseNXqAqdZVDAH7Jf1i-BLHZCiNGddxu5OqF1SU1qJ3CJAx3MjIALgoye3cpu4jSqmYn3qxvTzFzeVirSVF86uP51IpyRyiw1" />
+    
+    <div id="VMenu" Class="Menu">
+        <ul>
+         <li ><a href="/System/Empresas"> Empresas</a></li>
+         <li ><a href="/System/Contratos"> Contratos</a></li>
+         <li   Class="MenuSelected"  ><a href="/System/Envios"> Envios</a></li>
+         <li ><a href="/System/Anomalias"> Anomalias</a></li>
+         <li ><a href="/System/Imports"> Importación</a></li>
+         <li ><a href="/System/EventsUpdate"> Actualización</a></li>
+         <li ><a href="/System/ManageRutas"> Rutas</a></li>
+         <li ><a href="/System/BBITAdmin"> BestBuy <br /> Intertiendas</a></li>
+         <li ><a href="/System/Mifel_Sucursales"> Mifel <br /> Sucursales</a></li>
+         <li ><a href="/System/EmpresaImport"> Importación <br /> Empresa</a> </li>
+         <li ><a href="/System/Updates/Push2GOM"> Importación <br /> 2GOM Citas</a></li>
+         <li ><a href="/System/Updates/ContratoAsignacion"> Reasignación de  <br /> contrato</a></li>
+
+         <li ><a href="/Sepomex/Empresas"> SEPOMEX <br /> Empresas</a></li>
+         <li ><a href="/Sepomex/Import_Permissions"> SEPOMEX <br /> Usuarios</a></li>
+         <li ><a href="/Sepomex/Import_Data"> SEPOMEX <br /> Importación</a></li>
+         <li ><a href="/Sepomex/Export"> SEPOMEX <br /> Reporte</a></li>
+         <li ><a href="/System/Anomalias_Import.vbhtml"> Importación <br /> de anomalías</a></li>
+        </ul>
+    </div>
+   
+
+  <div id="MnuContainer" class="MenuContainer">
+   <div id="Cnt00" class="MenuContent"> 
+    <div class="ContainerTitle">Envios</div>
+    <div class="Section_2Col">
+     <div class="Col1"> 
+      <div class="FieldRow">
+  <div class="FieldLabel">Empresa :&nbsp</div>
+  <div class="FieldValue"><select id="EmpresasList" name="EmpresasList" onchange="EmpresaChange();" style="width:150px;">
+<option value="0">Selecciona una empresa</option>
+<option value="47">Banca Mifel</option>
+<option selected="selected" value="52">BES Servicios</option>
+<option value="16">Best Buy</option>
+<option value="18">Cardtronics M&#233;xico SA de CV</option>
+<option value="30">Charly</option>
+<option value="33">Charly  Recolecciones</option>
+<option value="56">Citibanamex</option>
+<option value="28">CTDI</option>
+<option value="27">Diagnhos</option>
+<option value="10">Dialogue</option>
+<option value="51">Edenred</option>
+<option value="1">Elavon</option>
+<option value="11">Fuller</option>
+<option value="13">Gayosso</option>
+<option value="45">Grupo Julio</option>
+<option value="3">Hand2hand Logistics</option>
+<option value="6">Inteligensa</option>
+<option value="53">Inventario EDN</option>
+<option value="5">Kantar World Panel</option>
+<option value="31">Marel Logistics </option>
+<option value="34">MBE Anzures</option>
+<option value="46">MBE Del Valle</option>
+<option value="37">MBE Duraznos</option>
+<option value="49">MBE Homero</option>
+<option value="41">MBE Iseo</option>
+<option value="48">MBE Polanco</option>
+<option value="40">MBE Tecamachalco</option>
+<option value="44">MBE Tlalnepantla</option>
+<option value="20">Mifel</option>
+<option value="2">Monte de Piedad</option>
+<option value="29">Nespresso</option>
+<option value="9">Okidata</option>
+<option value="12">Papeleria</option>
+<option value="57">Peregrino</option>
+<option value="14">Pijamas en Linea</option>
+<option value="58">Plantita</option>
+<option value="54">Si Vale</option>
+<option value="4">Soltis</option>
+<option value="21">STI</option>
+<option value="55">Stori</option>
+<option value="50">SUBURBIA</option>
+<option value="26">Tasvaluo</option>
+<option value="32">Telcel</option>
+<option value="15">Toka SA de CV</option>
+<option value="19">Verifone</option>
+<option value="38">Virgin Mobile M&#233;xico</option>
+<option value="7">World Web Trade</option>
+</select></div>
+ </div> 
+
+     </div>
+     <div class="Col1"> 
+      <div class="FieldRow">
+  <div class="FieldLabel">Contratos :&nbsp</div>
+  <div class="FieldValue"><select id="ContratosList" name="ContratosList" onchange="ContratoChange();" style="width:150px;">
+<option value="0">Selecciona un contrato</option>
+<option selected="selected" value="13547">BES 20 ABRIL 21</option>
+<option value="13536">BES 19 ABRIL 21</option>
+<option value="13525">BES STORI 16 ABRIL 21</option>
+<option value="13524">BES 16 ABRIL 21</option>
+<option value="13512">BES STORI 15 ABRIL 21</option>
+<option value="13511">BES 15 ABRIL 21</option>
+<option value="13497">BES 14 ABRIL 21</option>
+<option value="13483">BES 13 ABRIL 21</option>
+<option value="13471">BES 12 ABRIL 21</option>
+<option value="13460">BES STORI 09 ABRIL 21</option>
+<option value="13459">BES 09 ABRIL 21</option>
+<option value="13446">BES 08 ABRIL 21</option>
+<option value="13433">BES 07 ABRIL 21</option>
+<option value="13423">BES 06 ABRIL 21</option>
+<option value="13413">BES 05 ABRIL 21</option>
+<option value="13399">BES 31 MARZO 21</option>
+<option value="13388">BES 30 MARZO 21</option>
+<option value="13376">BES 29 MARZO 21</option>
+<option value="13364">BES STORI 26 MARZO 21</option>
+<option value="13363">BES 26 MARZO 21</option>
+<option value="13349">BES 25 MARZO 21</option>
+<option value="13338">BES 24 MARZO 21</option>
+<option value="13326">BES STORI 23 MARZO 21</option>
+<option value="13325">BES 23 MARZO 21</option>
+<option value="13313">BES 22 MARZO 21</option>
+<option value="13299">BES 19 MARZO 21</option>
+<option value="13284">BES 18 MARZO 21</option>
+<option value="13273">BES 17 MARZO 21</option>
+<option value="13262">BES 15 MARZO 21</option>
+<option value="13261">BES 16 MARZO 21</option>
+<option value="13249">BES STORI 12 MARZO 21</option>
+<option value="13248">BES 12 MARZO 21</option>
+<option value="13233">BES 11 MARZO 21</option>
+<option value="13220">BES 10 MARZO 21</option>
+<option value="13211">BES 09 MARZO 21</option>
+<option value="13199">BES 08 MARZO 21</option>
+<option value="13190">BES STORI 06 MARZO 21</option>
+<option value="13188">BES 05 MARZO 21</option>
+<option value="13177">BES 04 MARZO 21</option>
+<option value="13164">BES 03 MARZO 21</option>
+<option value="13152">BES 02 MARZO 21</option>
+<option value="13141">BES 01 MARZO 21</option>
+<option value="13129">BES STORI 26 FEBRERO 21</option>
+<option value="13128">BES 26 FEBRERO 21</option>
+<option value="13116">BES 25 FEBRERO 21</option>
+<option value="13104">BES 24 FEBRERO 21</option>
+<option value="13098">BES ALSEA FEBRERO 21</option>
+<option value="13093">BES 23 FEBRERO 21</option>
+<option value="13082">BES 22 FEBRERO 21</option>
+<option value="13073">BES 19 FEBRERO 21</option>
+<option value="12372">BES STORI 19 FEBRERO 21</option>
+<option value="12360">BES 18 FEBRERO 21</option>
+<option value="12347">BES 17 FEBRERO 21</option>
+<option value="12336">BES STORI 16 FEBRERO 21</option>
+<option value="12335">BES 16 FEBRERO 21</option>
+<option value="12327">BES 15 FEBRERO 21</option>
+<option value="12302">BES 12 FEBRERO 21</option>
+<option value="12298">BES STORI 11 FEBRERO 21</option>
+<option value="12293">BES 11 FEBRERO 21</option>
+<option value="12281">BES 10 FEBRERO 21</option>
+<option value="12272">BES 09 FEBRERO 21</option>
+<option value="12254">BES STORI 08 FEBRERO 21</option>
+<option value="12253">BES 08 FEBRERO 21</option>
+<option value="12251">BES 05 FEBRERO 21</option>
+<option value="12239">BES 04 FEBRERO 21</option>
+<option value="12225">BES 03 FEBRERO 21</option>
+<option value="12214">BES 02 FEBRERO 21</option>
+<option value="12211">BES 28 ENERO 22</option>
+<option value="12207">BES 29 ENERO 21</option>
+<option value="12198">BES 28 ENERO 21</option>
+<option value="12185">BES 27 ENERO 21</option>
+<option value="12177">BES 26 ENERO 21</option>
+<option value="12169">BES 25 ENERO 21</option>
+<option value="12162">BES 22 ENERO 21</option>
+<option value="12152">BES 21 ENERO 21</option>
+<option value="12143">BES 20 ENERO 21</option>
+<option value="12132">BES 19 ENERO 21</option>
+<option value="12124">BES 18 ENERO 21</option>
+<option value="12118">BES 15 ENERO 21</option>
+<option value="12111">BES 14 ENERO 21</option>
+<option value="12103">BES 13 ENERO 21</option>
+<option value="12094">BES 12 ENERO 21</option>
+<option value="12085">BES 11 ENERO 21</option>
+<option value="12080">BES 08 ENERO 21</option>
+<option value="12072">BES 07 ENERO 21</option>
+<option value="12063">BES 06 ENERO 21</option>
+<option value="12056">BES 05 ENERO 21</option>
+<option value="12044">BES STORI ENERO 21</option>
+<option value="12043">BES 04 ENERO 21</option>
+<option value="12036">BES 31 DICIEMBRE 20</option>
+<option value="12029">BES 30 DICIEMBRE 20</option>
+<option value="12022">BES 29 DICIEMBRE 20</option>
+<option value="12014">BES 28 DICIEMBRE 20</option>
+<option value="12003">BES 24 DICIEMBRE 20</option>
+<option value="11997">BES 23 DICIEMBRE 20</option>
+<option value="11988">BES 22 DICIEMBRE 20</option>
+<option value="11980">BES 21 DICIEMBRE 20</option>
+<option value="11971">BES 18 DICIEMBRE 20</option>
+<option value="11960">BES 17 DICIEMBRE 20</option>
+<option value="11951">BES 16 DICIEMBRE 20</option>
+<option value="11941">BES 15 DICIEMBRE 20</option>
+<option value="11928">BES 14 DICIEMBRE 20</option>
+<option value="11918">BES 11 DICIEMBRE 20</option>
+<option value="11910">BES 10 DICIEMBRE 20</option>
+<option value="11901">BES 09 DICIEMBRE 20</option>
+<option value="11894">BES 08 DICIEMBRE 20</option>
+<option value="11885">BES 07 DICIEMBRE 20</option>
+<option value="11873">BES STORI DICIEMBRE 20</option>
+<option value="11872">BES 04 DICIEMBRE 20</option>
+<option value="11863">BES 03 DICIEMBRE 20</option>
+<option value="11850">BES 02 DICIEMBRE 20</option>
+<option value="11837">BES 01 DICIEMBRE 20</option>
+<option value="11829">BES 30 NOVIEMBRE 20</option>
+<option value="11818">BES 27 NOVIEMBRE 20</option>
+<option value="11810">BES 26 NOVIEMBRE 20</option>
+<option value="11735">BES 25 NOVIEMBRE 20</option>
+<option value="11733">BES 25 NOVIEMBRE 20 MIFEL</option>
+<option value="11727">BES 18 NOV 20 AMEX</option>
+<option value="11723">BES 24 NOVIEMBRE 20</option>
+<option value="11710">BES 23 NOVIEMBRE 20</option>
+<option value="11703">BES 20 NOVIEMBRE 20</option>
+<option value="11695">BES 19 NOVIEMBRE 20</option>
+<option value="11683">BES 18 NOVIEMBRE 20</option>
+<option value="11674">BES 17 NOVIEMBRE 20</option>
+<option value="11663">BES 13 NOVIEMBRE 20</option>
+<option value="11652">BES 12 NOVIEMBRE 20</option>
+<option value="11643">BES 11 NOVIEMBRE 20</option>
+<option value="11632">BES 10 NOVIEMBRE 20</option>
+<option value="11615">BES 09 NOVIEMBRE 20</option>
+<option value="11607">BES 06 NOVIEMBRE 20</option>
+<option value="11598">BES 05 NOVIEMBRE 20</option>
+<option value="11586">BES STORI NOVIEMBRE 20</option>
+<option value="11585">BES 04 NOVIEMBRE 20</option>
+<option value="11571">BES 03 NOVIEMBRE 20</option>
+<option value="11562">BES 30 OCTUBRE 20</option>
+<option value="11550">BES 29 OCTUBRE 20</option>
+<option value="11537">BES 28 OCTUBRE 20</option>
+<option value="11529">BES 27 OCTUBRE 20</option>
+<option value="11523">BES 26 OCTUBRE 20</option>
+<option value="11510">BES 23 OCTUBRE 20</option>
+<option value="11499">BES 22 OCTUBRE 20</option>
+<option value="11488">BES 21 OCTUBRE 20</option>
+<option value="11477">BES 20 OCTUBRE 20</option>
+<option value="11465">BES 20 OCT 20 AMEX</option>
+<option value="11464">BES 19 OCTUBRE 20</option>
+<option value="11451">BES 16 OCTUBRE 20</option>
+<option value="11439">BES 15 OCTUBRE 20</option>
+<option value="11430">BES 14 OCTUBRE 20</option>
+<option value="11421">BES 13 OCTUBRE 20</option>
+<option value="11340">BES 12 OCTUBRE 20</option>
+<option value="11327">BES 09 OCTUBRE 20</option>
+<option value="11316">BES 08 OCTUBRE 20</option>
+<option value="11304">BES 07 OCTUBRE 20</option>
+<option value="11293">BES 06 OCTUBRE 20</option>
+<option value="11280">BES 05 OCTUBRE 20</option>
+<option value="11265">BES 02 OCTUBRE 20</option>
+<option value="11255">BES 01 OCTUBRE 20</option>
+<option value="11254">BES STORI OCTUBRE 20</option>
+<option value="11243">BES 30 SEPTIEMBRE 20</option>
+<option value="11234">BES 29 SEPTIEMBRE 20</option>
+<option value="11226">BES 28 SEPTIEMBRE 20</option>
+<option value="11211">BES 25 SEPTIEMBRE 20</option>
+<option value="11201">BES 24 SEPTIEMBRE 20</option>
+<option value="11191">BES 23 SEPTIEMBRE 20</option>
+<option value="11178">BES 22 SEPTIEMBRE 20</option>
+<option value="11168">BES 21 SEPTIEMBRE 20</option>
+<option value="11151">BES 18 SEPTIEMBRE 20</option>
+<option value="11130">BES 17 SEPTIEMBRE 20</option>
+<option value="11122">BES 15 SEPTIEMBRE 20</option>
+<option value="11108">BES 14 SEPTIEMBRE 21</option>
+<option value="11105">BES 14 SEPTIEMBRE 20</option>
+<option value="11087">BES 11 SEPTIEMBRE 20</option>
+<option value="11066">BES 10 SEPTIEMBRE 20</option>
+<option value="11051">BES 09 SEPTIEMBRE 20</option>
+<option value="11037">BES 08 SEPTIEMBRE 20</option>
+<option value="11024">BES 07 SEPTIEMBRE 20</option>
+<option value="11015">BES 04 SEPTIEMBRE 20</option>
+<option value="10998">BES 03 SEPTIEMBRE 20</option>
+<option value="10987">BES 02 SEPTIEMBRE 20</option>
+<option value="10878">BES STORI SEPTIEMBRE 20</option>
+<option value="10877">BES 01 SEPTIEMBRE 20</option>
+<option value="10864">BES 31 AGOSTO 20</option>
+<option value="10855">BES 28 AGOSTO 20</option>
+<option value="10840">BES 27 AGOSTO 20</option>
+<option value="10827">BES 26 AGOSTO 20</option>
+<option value="10820">BES 24 AGOSTO 21</option>
+<option value="10819">BES 25 AGOSTO 20</option>
+<option value="10810">BES 24 AGOSTO 20</option>
+<option value="10798">BES 21 AGOSTO 20</option>
+<option value="10784">BES 20 AGOSTO 20</option>
+<option value="10773">BES 19 AGOSTO 20</option>
+<option value="10763">BES 18 AGOSTO 20</option>
+<option value="10753">BES 17 AGOSTO 20</option>
+<option value="10740">BES 14 AGOSTO 20</option>
+<option value="10730">BES 13 AGOSTO 20</option>
+<option value="10721">BES 12 AGOSTO 20</option>
+<option value="10711">BES 11 AGOSTO 20</option>
+<option value="10701">BES 10 AGOSTO 20</option>
+<option value="10690">BES 07 AGOSTO 20</option>
+<option value="10681">BES 06 AGOSTO 20</option>
+<option value="10671">BES 05 AGOSTO 20</option>
+<option value="10660">BES 04 AGOSTO 20</option>
+<option value="10649">BES STORI AGOSTO 20</option>
+<option value="10648">BES 03 AGOSTO 20</option>
+<option value="10633">BES 31 JULIO 20</option>
+<option value="10624">BES 30 JULIO 20</option>
+<option value="10612">BES 29 JULIO 20</option>
+<option value="10598">BES 28 JULIO 20</option>
+<option value="10587">BES 27 JULIO 20</option>
+<option value="10575">BES 24 JULIO 20</option>
+<option value="10562">BES 23 JULIO 20</option>
+<option value="10554">BES 22 JULIO 20</option>
+<option value="10534">BES 20 JULIO 20</option>
+<option value="10519">BES 17 JULIO 20</option>
+<option value="10511">BES 16 JULIO 20</option>
+<option value="10501">BES 15 JULIO 20</option>
+<option value="10489">BES 14 JULIO 20</option>
+<option value="10481">BES 13 JULIO 20</option>
+<option value="10467">BES 10 JULIO 20</option>
+<option value="10456">BES 09 JULIO 20</option>
+<option value="10445">BES 08 JULIO 20</option>
+<option value="10434">BES 07 JULIO 20</option>
+<option value="10424">BES 06 JULIO 20</option>
+<option value="10412">BES 03 JULIO 20</option>
+<option value="10401">BES 02 JULIO 20</option>
+<option value="10389">BES STORI JULIO 20</option>
+<option value="10388">BES 01 JULIO 20</option>
+<option value="10365">BES 30 JUNIO 20</option>
+<option value="10353">BES 29 JUNIO 20</option>
+<option value="10342">BES 26 JUNIO 20</option>
+<option value="10334">BES 25 JUNIO 20</option>
+<option value="10321">BES 24 JUNIO 20</option>
+<option value="10310">BES 23 JUNIO 20</option>
+<option value="10294">BES 22 JUNIO 20</option>
+<option value="10283">BES 19 JUNIO 20</option>
+<option value="10270">BES 18 JUNIO 20</option>
+<option value="10257">BES 17 JUNIO 20</option>
+<option value="10245">BES 16 JUNIO 20</option>
+<option value="10233">BES 15 JUNIO 20</option>
+<option value="10216">BES 12 JUNIO 20</option>
+<option value="10205">BES 11 JUNIO 20</option>
+<option value="10194">BES 10 JUNIO 20</option>
+<option value="10184">BES 09 JUNIO 20</option>
+<option value="10173">BES 08 JUNIO 20</option>
+<option value="10159">BES 05 JUNIO 20</option>
+<option value="10147">BES 04 JUNIO 20</option>
+<option value="10135">BES 03 JUNIO 20</option>
+<option value="10126">BES 02 JUNIO 20</option>
+<option value="10114">BES 01 JUNIO 20</option>
+<option value="10113">BES STORI JUNIO 20</option>
+<option value="10099">BES 29 MAYO 20</option>
+<option value="10089">BES 28 MAYO 20</option>
+<option value="10078">BES 27 MAYO 20</option>
+<option value="10066">BES 26 MAYO 20</option>
+<option value="10057">BES 25 MAYO 20</option>
+<option value="10041">BES 22 MAYO 20</option>
+<option value="10031">BES 21 MAYO 20</option>
+<option value="10021">BES 20 MAYO 20</option>
+<option value="10008">BES 19 MAYO 20</option>
+<option value="9997">BES 18 MAYO 20</option>
+<option value="9982">BES 15 MAYO 20</option>
+<option value="9971">BES 14 MAYO 20</option>
+<option value="9958">BES 13 MAYO 20</option>
+<option value="9947">BES 12 MAYO 20</option>
+<option value="9936">BES 11 MAYO 20</option>
+<option value="9916">BES 08 MAYO 20</option>
+<option value="9903">BES 07 MAYO 20</option>
+<option value="9892">BES 06 MAYO 20</option>
+<option value="9880">BES 05 MAYO 20</option>
+<option value="9870">BES STORI MAYO 20</option>
+<option value="9869">BES 04 MAYO 20</option>
+<option value="9851">BES 30 ABRIL  20</option>
+<option value="9841">BES 29 ABRIL  20</option>
+<option value="9824">BES 28 ABRIL  20</option>
+<option value="9816">BES 27 ABRIL  20</option>
+<option value="9794">BES 24 ABRIL  20</option>
+<option value="9781">BES 23 ABRIL  20</option>
+<option value="9771">BES 22 ABRIL  20</option>
+<option value="9758">BES 21 ABRIL  20</option>
+<option value="9741">BES 20 ABRIL  20</option>
+<option value="9728">BES 17 ABRIL  20</option>
+<option value="9715">BES 16 ABRIL  20</option>
+<option value="9706">BES 15 ABRIL  20</option>
+<option value="9689">BES 14 ABRIL  20</option>
+<option value="9680">BES 13 ABRIL  20</option>
+<option value="9664">BES 08 ABRIL  20</option>
+<option value="9652">BES 07 ABRIL  20</option>
+<option value="9638">BES 06 ABRIL  20</option>
+<option value="9605">BES 03 ABRIL  20</option>
+<option value="9596">BES 02 ABRIL  20</option>
+<option value="9438">BES STORI ABRIL  20</option>
+<option value="9437">BES 01 ABRIL  20</option>
+<option value="9424">BES 31 MARZO  20</option>
+<option value="9412">BES 30 MARZO  20</option>
+<option value="9393">BES 27 MARZO  20</option>
+<option value="9377">BES 26 MARZO  20</option>
+<option value="9360">BES 25 MARZO  20</option>
+<option value="9346">BES 24 MARZO  20</option>
+<option value="9334">BES 23 MARZO  20</option>
+<option value="9314">BES 20 MARZO  20</option>
+<option value="9298">BES 19 MARZO  20</option>
+<option value="9283">BES 18 MARZO  20</option>
+<option value="9270">BES 17 MARZO  20</option>
+<option value="9249">BES 13 MARZO  20</option>
+<option value="9235">BES 12 MARZO  20</option>
+<option value="9221">BES 11 MARZO  20</option>
+<option value="9203">BES 10 MARZO  20</option>
+<option value="9188">BES 09 MARZO  20</option>
+<option value="9167">BES 06 MARZO  20</option>
+<option value="9154">BES 05 MARZO  20</option>
+<option value="9139">BES 04 MARZO  20</option>
+<option value="9121">BES 03 MARZO  20</option>
+<option value="9106">BES 02 MARZO  20</option>
+<option value="9105">BES STORI MARZO  20</option>
+<option value="9080">BES 28 FEBRERO  20</option>
+<option value="9066">BES 27 FEBRERO  20</option>
+<option value="9047">BES 26 FEBRERO  20</option>
+<option value="9032">BES 25 FEBRERO  20</option>
+<option value="9015">BES 24 FEBRERO  20</option>
+<option value="8998">BES 21 FEBRERO  20</option>
+<option value="8987">BES STORI FEBRERO  20</option>
+<option value="8986">BES 20 FEBRERO  20</option>
+<option value="8970">BES 19 FEBRERO  20</option>
+<option value="8956">BES 18 FEBRERO  20</option>
+<option value="8936">BES 17 FEBRERO  20</option>
+<option value="8794">BES 14 FEBRERO  20</option>
+<option value="8776">BES 13 FEBRERO  20</option>
+<option value="8762">BES 12 FEBRERO  20</option>
+<option value="8745">BES 11 FEBRERO  20</option>
+<option value="8730">BES 10 FEBRERO  20</option>
+<option value="8718">BES 07 FEBRERO  20</option>
+<option value="8703">BES 06 FEBRERO  20</option>
+<option value="8692">BES 05 FEBRERO  20</option>
+<option value="8679">BES 04 FEBRERO  20</option>
+<option value="8670">BES 31 ENER 20</option>
+<option value="8654">BES 30 ENER 20</option>
+<option value="8644">BES 29 ENER 20</option>
+<option value="8631">BES 28 ENER 20</option>
+<option value="8618">BES 27 ENER 20</option>
+<option value="8606">BES 24 ENER 20</option>
+<option value="8594">BES 23 ENER 20</option>
+<option value="8582">BES 22 ENER 20</option>
+<option value="8571">BES 21 ENER 20</option>
+<option value="8556">BES 20 ENER 20</option>
+<option value="8547">BES 17 ENER 20</option>
+<option value="8531">BES 16 ENER 20</option>
+<option value="8521">BES 15 ENER 20</option>
+<option value="8511">BES 14 ENER 20</option>
+<option value="8500">BES 13 ENER 20</option>
+<option value="8486">BES 10 ENER 20</option>
+<option value="8469">BES 09 ENER 20</option>
+<option value="8461">BES 08 ENER 20</option>
+<option value="8450">BES 07 ENER 20</option>
+<option value="8435">BES 06 ENER 20</option>
+<option value="8426">BES 03 ENER 20</option>
+<option value="8412">BES 02 ENER 20</option>
+<option value="8405">BES 31 DIC 19</option>
+<option value="8368">BES 30 DIC 19</option>
+<option value="8356">BES 27 DIC 19</option>
+<option value="8340">BES 26 DIC 19</option>
+<option value="8323">BES 23 DIC 19</option>
+<option value="8314">BES 20 DIC 19</option>
+<option value="8303">BES 19 DIC 19</option>
+<option value="8283">BES 18 DIC 19</option>
+<option value="8272">BES 17 DIC 19</option>
+<option value="8264">BES 16 DIC 19</option>
+<option value="8254">BES 13 DIC 19</option>
+<option value="8243">BES 12 DIC 19</option>
+<option value="8230">BES 11 DIC 19</option>
+<option value="8219">BES 10 DIC 19</option>
+<option value="8097">BES 09 DIC 19</option>
+<option value="8088">BES 06 DIC 19</option>
+<option value="8077">BES 05 DIC 19</option>
+<option value="8066">BES 04 DIC 19</option>
+<option value="8053">BES 03 DIC 19</option>
+<option value="8049">BES 02 DIC 19</option>
+<option value="8034">BES 29 NOV 19</option>
+<option value="8024">BES 28 NOV 19</option>
+<option value="8005">BES 27 NOV 19</option>
+<option value="7978">BES 26 NOV 19</option>
+<option value="7972">BES 25 NOV 19</option>
+<option value="7967">BES 22 NOV 19</option>
+<option value="7958">BES 21 NOV 19</option>
+<option value="7950">BES 20 NOV 19</option>
+<option value="7937">BES 19 NOV 19</option>
+<option value="7911">BES 15 NOV 19</option>
+<option value="7892">BES 14 NOV 19</option>
+<option value="7885">BES 13 NOV 19</option>
+<option value="7873">BES 12 NOV 19</option>
+<option value="7863">BES 11 NOV 19</option>
+<option value="7851">BES 08 NOV 19</option>
+<option value="7839">BES 07 NOV 19</option>
+<option value="7826">BES 06 NOV 19</option>
+<option value="7817">BES 05 NOV 19</option>
+<option value="7806">BES 04 NOV 19</option>
+<option value="7798">BES 01 NOV 19</option>
+<option value="7797">BES NOV 19 EMPRESARIAL</option>
+<option value="7796">BES  NOV 19 LITHO</option>
+<option value="7782">BES 31 OCT 19</option>
+<option value="7777">BES 30 OCT 19</option>
+<option value="7770">BES 29 OCT 19</option>
+<option value="7763">BES 28 OCT 19</option>
+<option value="7756">BES 25 OCT 19</option>
+<option value="7742">BES 24 OCT 19</option>
+<option value="7733">BES 23 OCT 19</option>
+<option value="7723">BES 22 OCT 19</option>
+<option value="7713">BES 21 OCT 19</option>
+<option value="7706">BES 18 OCT 19</option>
+<option value="7693">BES 17 OCT 19</option>
+<option value="7682">BES 16 OCT 19</option>
+<option value="7671">BES 15 OCT 19</option>
+<option value="7661">BES 14 OCT 19</option>
+<option value="7647">BES 11 OCT 19</option>
+<option value="7632">BES 10 OCT 19</option>
+<option value="7622">BES 09 OCT 19</option>
+<option value="7613">BES 08 OCT 19</option>
+<option value="7348">BES 07 OCT 19</option>
+<option value="7338">BES 04 OCT 19</option>
+<option value="7324">BES 03 OCT 19</option>
+<option value="7316">BES  OCT 19 LITHO</option>
+<option value="7313">BES 02 OCT 19</option>
+<option value="7307">BES 01 OCT 19</option>
+<option value="7302">BES OCT 19 EMPRESARIAL</option>
+<option value="7299">BES 30 SEP 19</option>
+<option value="7291">BES 27 SEP 19</option>
+<option value="7275">BES 26 SEP 19</option>
+<option value="7263">BES 25 SEP 19</option>
+<option value="7250">BES 24 SEP 19</option>
+<option value="7242">BES 23 SEP 19</option>
+<option value="7233">BES 20 SEP 19</option>
+<option value="7232">BES 19 SEP 19</option>
+<option value="7212">BES 18 SEP 19</option>
+<option value="7202">BES 17 SEP 19</option>
+<option value="7194">BES 13 SEP 19</option>
+<option value="7183">BES 12 SEP 19</option>
+<option value="7172">BES 11 SEP 19</option>
+<option value="7167">BES 10 SEP 19</option>
+<option value="7158">BES 09 SEP 19</option>
+<option value="7150">BES 06 SEP 19</option>
+<option value="7136">BES 05 SEP 19</option>
+<option value="7129">BES 04 SEP 19</option>
+<option value="7119">BES 03 SEP 19</option>
+<option value="7113">BES 02 SEP 19</option>
+<option value="7111">BES  SEP 19 LITHO</option>
+<option value="7107">BES SEP 19 EMPRESARIAL</option>
+<option value="7102">BES 30 AGOS 19</option>
+<option value="7087">BES 29 AGOS 19</option>
+<option value="7076">BES 28 AGOS 19</option>
+<option value="7067">BES 27 AGOS 19</option>
+<option value="7059">BES 26 AGOS 19</option>
+<option value="7050">BES 23 AGOS 19</option>
+<option value="7038">BES 22 AGOS 19</option>
+<option value="7027">BES 21 AGOS 19</option>
+<option value="7019">BES 20 AGOS 19</option>
+<option value="7011">BES 19 AGOS 19</option>
+<option value="7002">BES 16 AGOS 19</option>
+<option value="6988">BES 15 AGOS 19</option>
+<option value="6981">BES 14 AGOS 19</option>
+<option value="6974">BES 13 AGOS 19</option>
+<option value="6966">BES 12 AGOS 19</option>
+<option value="6957">BES 09 AGOS 19</option>
+<option value="6944">BES 08 AGOS 19</option>
+<option value="6934">BES 07 AGOS 19</option>
+<option value="6927">BES 06 AGOS 19</option>
+<option value="6922">BES AGOS 19 EMPRESARIAL</option>
+<option value="6918">BES 05 AGOS 20</option>
+<option value="6916">BES 05 AGOS 19</option>
+<option value="6903">BES 02 AGOS 19</option>
+<option value="6890">BES 01 AGOS 19</option>
+<option value="6889">BES AGOS 19 LITHO</option>
+<option value="6879">BES 31 JUL 19</option>
+<option value="6872">BES 30 JUL 19</option>
+<option value="6861">BES 29 JUL 19</option>
+<option value="6851">BES 26 JUL 19</option>
+<option value="6837">BES 25 JUL 19</option>
+<option value="6828">BES 24 JUL 19</option>
+<option value="6819">BES 23 JUL 19</option>
+<option value="6810">BES 22 JUL 19</option>
+<option value="6799">BES 19 JUL 19</option>
+<option value="6786">BES 18 JUL 19</option>
+<option value="6779">BES 17 JUL 19</option>
+<option value="6773">BES 16 JUL 19</option>
+<option value="6766">BES 15 JUL 19</option>
+<option value="6761">BES 12 JUL 19</option>
+<option value="6751">BES 11 JUL 19</option>
+<option value="6743">BES 10 JUL 19</option>
+<option value="6734">BES 09 JUL 19</option>
+<option value="6726">BES 08 JUL 19</option>
+<option value="6714">BES 05 JUL 19</option>
+<option value="6701">BES 04 JUL 19</option>
+<option value="6691">BES 03 JUL 19</option>
+<option value="6681">BES 02 JUL 19</option>
+<option value="6670">BES 01 JUL 19</option>
+<option value="6669">BES JUL 19 LITHO</option>
+<option value="6663">BES 28 JUN 19</option>
+<option value="6652">BES 27 JUN 19</option>
+<option value="6643">BES 26 JUN 19</option>
+<option value="6636">BES 25 JUN 19</option>
+<option value="6624">BES 24 JUN 19</option>
+<option value="6616">BES 21 JUN 19</option>
+<option value="6605">BES 20 JUN 19</option>
+<option value="6598">BES 19 JUN 19</option>
+<option value="6590">BES 18 JUN 19</option>
+<option value="6582">BES 17 JUN 19</option>
+<option value="6573">BES 14 JUN 19</option>
+<option value="6563">BES 13 JUN 19</option>
+<option value="6556">BES 12 JUN 19</option>
+<option value="6531">BES 11 JUN 19</option>
+<option value="6523">BES 10 JUN 19</option>
+<option value="6514">BES 07 JUN 19</option>
+<option value="6501">BES JUN 19 LITHO</option>
+<option value="6500">BES 06 JUN 19</option>
+<option value="6494">BES 05 JUN 19</option>
+<option value="6484">BES 04 JUN 19</option>
+<option value="6477">BES 03 JUN 19</option>
+<option value="6467">BES 31 MAY 19</option>
+<option value="6454">BES 30 MAY 19</option>
+<option value="6448">BES 29 MAY 19</option>
+<option value="6440">BES 28 MAY 19</option>
+<option value="6433">BES 27 MAY 19</option>
+<option value="6425">BES 24 MAY 19</option>
+<option value="6415">BES 23 MAY 19</option>
+<option value="6410">BES 22 MAY 19</option>
+<option value="6398">BES 21 MAY 19</option>
+<option value="6397">BES 20 MAY 19</option>
+<option value="6385">BES 17 MAY 19</option>
+<option value="6374">BES 16 MAY 19</option>
+<option value="6368">BES 15 MAY 19</option>
+<option value="6360">BES 14 MAY 19</option>
+<option value="6359">BES 13 MAY 19</option>
+<option value="6340">BES 10 MAY 19</option>
+<option value="6336">BES 09 MAY 19</option>
+<option value="6335">BES 08 MAY 19</option>
+<option value="6334">BES 07 MAY 19</option>
+<option value="6333">BES 06 MAY 19</option>
+<option value="6332">BES 03 MAY 19</option>
+<option value="6330">BES 02 MAY 19</option>
+</select></div>
+  <div class="LButton" style="margin-left:10px;" onclick="document.getElementById('Frm01').submit();">Ir</div>
+ </div> 
+
+     </div>
+    </div>
+    <div id="ResultsPanel" class="Section_2Col">
+ <div class="ResultGroup">
+  <div>
+  <div class="ResultRow">
+   <div Class="ColumnAction"></div>
+    <div class="ResultColumn">No. Tracking</div>
+    <div class="ResultColumn ColumnMidSize">Destinatario</div>
+    <div class="ResultColumn">Estatus</div>
+    <div class="ResultColumn">Fecha</div>
+  </div>
+   
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941038"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0001  </div>
+  <div class="ResultCell">
+MM-MEX SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941039"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0002  </div>
+  <div class="ResultCell">
+ADMINISTRACION DE RIESGOS BAL SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941040"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0003  </div>
+  <div class="ResultCell">
+FARMACIAS DE SIMILARES SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941041"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0004  </div>
+  <div class="ResultCell">
+TECHBUSSINESS OPERACIONES MEXICO S DE RL  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941042"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0005  </div>
+  <div class="ResultCell">
+LABORATORIOS BAILLEUL SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941043"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0006  </div>
+  <div class="ResultCell">
+APACIM, S.A. DE C.V.  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941044"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0007  </div>
+  <div class="ResultCell">
+SERVICIOS CORPORATIVOS NFC S DE RL DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941045"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0008  </div>
+  <div class="ResultCell">
+SERVICIOS DE SALUD OPERANDO, S.A. DE C.V  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941046"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0009  </div>
+  <div class="ResultCell">
+TICKET RESTAURANTE RED MAXIMA PS  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941047"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0010  </div>
+  <div class="ResultCell">
+OPERADORA MING, S.C.  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941048"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0011  </div>
+  <div class="ResultCell">
+MUEBLES Y MUDANZAS  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941049"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0012  </div>
+  <div class="ResultCell">
+REYNA ORDO&#209;EZ ESPINOZA  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941050"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0013  </div>
+  <div class="ResultCell">
+SINERGEL SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941051"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0014  </div>
+  <div class="ResultCell">
+CRYOINFRA S.A. DE C.V.  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941052"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0015  </div>
+  <div class="ResultCell">
+REUNE A DE S Y F  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941053"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0016  </div>
+  <div class="ResultCell">
+SERVICIO PAN AMERICANO DE PROTECCION, S  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941054"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0017  </div>
+  <div class="ResultCell">
+MEXICANA DE ESPACIOS ABIERTOS, S.A. DE C  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941055"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0018  </div>
+  <div class="ResultCell">
+DESARROLLOS VERDES SUSTENTABLES, S.A. DE  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941056"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0019  </div>
+  <div class="ResultCell">
+ABEQUIA  SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941057"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0020  </div>
+  <div class="ResultCell">
+DENTSPLY MEXICO SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941058"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0021  </div>
+  <div class="ResultCell">
+SOFIA YOLANDA ALE SOTO  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941059"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0022  </div>
+  <div class="ResultCell">
+ROBERTET DE MEXICO S.A. DE C.V.  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941060"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0023  </div>
+  <div class="ResultCell">
+MEDSTENT, S.A. DE C.V.  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941061"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0024  </div>
+  <div class="ResultCell">
+PROFUTURO AFORE SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Envio/941062"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+BES20042100BE0025  </div>
+  <div class="ResultCell">
+MARCH NETWORKS DE MEXICO SA DE CV  </div>
+  <div class="ResultCell">
+Recibido mensajeria  </div>
+  <div class="ResultCell">
+20/04/2021 07:16 PM  </div>
+</div>
+  </div>
+  <div class="ResultsFooter">
+   <div class="ResultsCounter">139 Resultado(s)</div>
+   <div class="ResultsPager">
+    <img alt="PageBack" src="/Content/icons/control_rewind.png" width="15px" onclick="Nav_Back();" />
+    Pagina&nbsp <input type="text" id="Pager" name="Pager" value="1" style="width:25px;" /> &nbspde 6
+    <img alt="PageFoward" src="/Content/icons/control_fastforward.png" width="15px" onclick="Nav_Fowd();" />
+   </div>
+   
+   <input id="CurrentPage" name="CurrentPage" type="hidden" value="1" />
+  </div>
+ </div>
+      <div style="clear:both;">
+        <div class="Button"><a href="/System/EnvioNew/52/13547">Crear Nuevo</a></div>
+       </div>
+    </div>
+   </div>
+  </div>
+</form>  
+   </div>
+   <div id="Footer">Hand2Hand Logistics &copy; 2015</div>
+  </div>       
+ </body>
+</html>
