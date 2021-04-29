@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+  <meta name="description" content="Servicios personalizados de mensajeria." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/Content/Default.css" rel="stylesheet" type="text/css" />
+  <link href="/Content/Media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+  <title>Hand2Hand Logistics</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+  <script src="/Content/Utilities.js" ></script>
+  
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <script>
+  function Nav_Back() {
+   //$('#CurrentPage').val('If Rslt.CurrentPage = 1 Then <text>1</Text> else (Rslt.CurrentPage - 1) End If');
+   $('#CurrentPage').val('1');
+   $('<input>').attr({ type: 'hidden', id: 'Action', name: 'Action', value: 'Search' }).appendTo('#Frm01');
+   document.getElementById('Frm01').submit();
+  }
+  function Nav_Fowd() {
+   //$('#CurrentPage').val('If Rslt.CurrentPage = Rslt.NoPages Then Rslt.NoPages else (Rslt.CurrentPage + 1) End If');
+   $('#CurrentPage').val('2');
+   $('<input>').attr({ type: 'hidden', id: 'Action', name: 'Action', value: 'Search' }).appendTo('#Frm01');;
+   document.getElementById('Frm01').submit();
+  }
+ </script>
+
+ </head>
+ <body>
+  <div id="Page">
+   <div id="Brand"><img alt="Logo" src="/Content/Media/Logo.jpg" /></div>
+   <div id="Nav">
+    
+    
+    <ul>
+     <li Class="First"><a href="/System/Home.vbhtml">Inicio</a></li>
+     <li> <a href="/System/Operation"> Operación</a></li>
+     <li> <a href="/System/Querys"> Consultas</a></li>
+     <li> <a href="/System/Management">Administración</a></li>
+     <li> <a href="/System/Logout">Logout</a></li>
+    </ul>
+   
+
+
+   </div>
+   <div id="Cnt">
+    
+
+
+
+
+
+<form id="Frm01" method="post">
+     
+    <div id="VMenu" Class="Menu">
+        <ul>
+         <li ><a href="/System/Empresas"> Empresas</a></li>
+         <li   Class="MenuSelected"  ><a href="/System/Contratos"> Contratos</a></li>
+         <li ><a href="/System/Envios"> Envios</a></li>
+         <li ><a href="/System/Anomalias"> Anomalias</a></li>
+         <li ><a href="/System/Imports"> Importación</a></li>
+         <li ><a href="/System/EventsUpdate"> Actualización</a></li>
+         <li ><a href="/System/ManageRutas"> Rutas</a></li>
+         <li ><a href="/System/BBITAdmin"> BestBuy <br /> Intertiendas</a></li>
+         <li ><a href="/System/Mifel_Sucursales"> Mifel <br /> Sucursales</a></li>
+         <li ><a href="/System/EmpresaImport"> Importación <br /> Empresa</a> </li>
+         <li ><a href="/System/Updates/Push2GOM"> Importación <br /> 2GOM Citas</a></li>
+         <li ><a href="/System/Updates/ContratoAsignacion"> Reasignación de  <br /> contrato</a></li>
+
+         <li ><a href="/Sepomex/Empresas"> SEPOMEX <br /> Empresas</a></li>
+         <li ><a href="/Sepomex/Import_Permissions"> SEPOMEX <br /> Usuarios</a></li>
+         <li ><a href="/Sepomex/Import_Data"> SEPOMEX <br /> Importación</a></li>
+         <li ><a href="/Sepomex/Export"> SEPOMEX <br /> Reporte</a></li>
+         <li ><a href="/System/Anomalias_Import.vbhtml"> Importación <br /> de anomalías</a></li>
+        </ul>
+    </div>
+   
+
+  <div id="MnuContainer" class="MenuContainer">
+   <div id="Cnt00" class="MenuContent"> 
+    <div class="ContainerTitle">Contratos</div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Empresa :&nbsp</div>
+  <div class="FieldValue"><select id="EntList" name="EntList">
+<option value="0">Selecciona una empresa</option>
+<option value="47">Banca Mifel</option>
+<option value="52">BES Servicios</option>
+<option value="16">Best Buy</option>
+<option value="18">Cardtronics M&#233;xico SA de CV</option>
+<option value="30">Charly</option>
+<option value="33">Charly  Recolecciones</option>
+<option value="56">Citibanamex</option>
+<option value="28">CTDI</option>
+<option value="27">Diagnhos</option>
+<option value="10">Dialogue</option>
+<option value="51">Edenred</option>
+<option value="1">Elavon</option>
+<option value="11">Fuller</option>
+<option value="13">Gayosso</option>
+<option value="45">Grupo Julio</option>
+<option value="3">Hand2hand Logistics</option>
+<option value="6">Inteligensa</option>
+<option value="53">Inventario EDN</option>
+<option value="5">Kantar World Panel</option>
+<option value="31">Marel Logistics </option>
+<option value="34">MBE Anzures</option>
+<option value="46">MBE Del Valle</option>
+<option value="37">MBE Duraznos</option>
+<option value="49">MBE Homero</option>
+<option value="41">MBE Iseo</option>
+<option value="48">MBE Polanco</option>
+<option value="40">MBE Tecamachalco</option>
+<option value="44">MBE Tlalnepantla</option>
+<option value="20">Mifel</option>
+<option value="2">Monte de Piedad</option>
+<option value="29">Nespresso</option>
+<option value="9">Okidata</option>
+<option value="12">Papeleria</option>
+<option value="57">Peregrino</option>
+<option value="14">Pijamas en Linea</option>
+<option value="58">Plantita</option>
+<option value="54">Si Vale</option>
+<option selected="selected" value="4">Soltis</option>
+<option value="21">STI</option>
+<option value="55">Stori</option>
+<option value="50">SUBURBIA</option>
+<option value="26">Tasvaluo</option>
+<option value="32">Telcel</option>
+<option value="15">Toka SA de CV</option>
+<option value="19">Verifone</option>
+<option value="38">Virgin Mobile M&#233;xico</option>
+<option value="7">World Web Trade</option>
+</select></div>
+  <div class="LButton" style="margin-left:10px;" onclick="document.getElementById('Frm01').submit();">Ir</div>
+ </div> 
+
+ <div class="ResultGroup">
+  <div>
+  <div class="ResultRow">
+   <div Class="ColumnAction"></div>
+    <div class="ResultColumn">Contrato</div>
+  </div>
+   
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Contrato/13113"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+Dise&#241;o de Interfaz 2.0  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Contrato/11884"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+SSYTST0001  </div>
+</div>
+  <div class="ResultRow" onmouseover="$(this).css('background-color','#b6ff00');" onmouseout="$(this).css('background-color','#fff');">
+ <div class="ColumnAction"><a href="/System/Contrato/11442"><img alt="Detalles" src="/Content/icons/ic_assignment_black_24dp.png" width="15px" /></a></div>
+  <div class="ResultCell">
+SSY20201016  </div>
+</div>
+  </div>
+  <div class="ResultsFooter">
+   <div class="ResultsCounter">3 Resultado(s)</div>
+   <div class="ResultsPager">
+    <img alt="PageBack" src="/Content/icons/control_rewind.png" width="15px" onclick="Nav_Back();" />
+    Pagina&nbsp <input type="text" id="Pager" name="Pager" value="1" style="width:25px;" /> &nbspde 1
+    <img alt="PageFoward" src="/Content/icons/control_fastforward.png" width="15px" onclick="Nav_Fowd();" />
+   </div>
+   
+   <input id="CurrentPage" name="CurrentPage" type="hidden" value="1" />
+  </div>
+ </div>
+      <div style="clear:both;">
+        <div class="Button"><a href="/System/ContratoNew/4">Crear Nuevo</a></div>
+       </div>
+   </div>
+  </div>
+ </form>
+
+
+
+  
+   </div>
+   <div id="Footer">Hand2Hand Logistics &copy; 2015</div>
+  </div>       
+ </body>
+</html>
