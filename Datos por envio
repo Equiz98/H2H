@@ -1,0 +1,1173 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+  <meta name="description" content="Servicios personalizados de mensajeria." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/Content/Default.css" rel="stylesheet" type="text/css" />
+  <link href="/Content/Media/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  
+ <link type="text/css" rel="stylesheet" href="/Content/jquery-ui-1.11.4/jquery-ui.min.css" />
+
+  <title>Hand2Hand Logistics</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+  <script src="/Content/Utilities.js" ></script>
+  
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <script type="text/javascript">
+  $(function () {
+   $('.DTP').datepicker({ dateFormat: "dd/mm/yy" });
+   ValidNumber('Qty');
+   ValidNumber('Valor');
+   ValidNumber('Peso');
+   ValidNumber('Alto');
+   ValidNumber('Ancho');
+   ValidNumber('Largo');
+  });
+  function Cancel(ContainerID, ControlID, Value) {
+   $('#' + ContainerID).css('display', 'none');
+   $('#' + ControlID).val(Value);
+  }
+  function Accept(ContainerID) {
+   $('#' + ContainerID).css('display', 'none');
+   document.getElementById('Frm01').submit();
+  }
+  function DateCancel(ContainerID, ControlID, Value) {
+   $('#' + ContainerID).css('display', 'none');
+   if (Value == '01-Jan-01 12:00:00 AM') {
+    $('#' + ControlID).val('')
+   } else {
+    $('#' + ControlID).val(Value);
+   }
+  }
+  function DateAccept(ContainerID) {
+   $('#' + ContainerID).css('display', 'none');
+   document.getElementById('Frm01').submit();
+  }
+  function ValidNumber(ID) {
+   document.getElementById(ID).onkeydown = function (e) {
+    var key = e.keyCode ? e.keyCode : e.which;
+    var stat = false;
+    if (isNaN(String.fromCharCode(key))) {
+     if (key != 8 && key != 190) stat = true;
+    }
+    if (stat == true) return false;
+   }
+  }
+  function SendEMail(Evento) {
+   $('#SendMail').val(Evento);
+   document.getElementById('Frm01').submit();
+  }
+  function Envio_Delete() {
+   $('#Action').val('Env_Delete');
+   document.getElementById('Frm01').submit();
+  }
+ </script>
+
+ </head>
+ <body>
+  <div id="Page">
+   <div id="Brand"><img alt="Logo" src="/Content/Media/Logo.jpg" /></div>
+   <div id="Nav">
+    
+    
+    <ul>
+     <li Class="First"><a href="/System/Home.vbhtml">Inicio</a></li>
+     <li> <a href="/System/Operation"> Operación</a></li>
+     <li> <a href="/System/Querys"> Consultas</a></li>
+     <li> <a href="/System/Management">Administración</a></li>
+     <li> <a href="/System/Logout">Logout</a></li>
+    </ul>
+   
+
+
+   </div>
+   <div id="Cnt">
+    
+
+
+
+
+
+
+
+<form id="Frm01" method="post">
+ <input name="__RequestVerificationToken" type="hidden" value="Mx5eNdhcUf8qoWbcKiwwVtkUQm3SK240Om9GF_n9NVIVy68jcfhNFKwkI94cgRQBwukQDA6r_qnLMp5XyJ3t9oN3TukjEI4KoYEZgthrLwPovJVpso2LLSRCk5AneRGZ4vSs56naAqtGIEg9-9gFQGn022TtaJo140Z1BMkZfhY1" />
+ <input type="hidden" id="Action" name="Action" value="" />
+    
+    <div id="VMenu" Class="Menu">
+        <ul>
+         <li ><a href="/System/Empresas"> Empresas</a></li>
+         <li ><a href="/System/Contratos"> Contratos</a></li>
+         <li   Class="MenuSelected"  ><a href="/System/Envios"> Envios</a></li>
+         <li ><a href="/System/Anomalias"> Anomalias</a></li>
+         <li ><a href="/System/Imports"> Importación</a></li>
+         <li ><a href="/System/EventsUpdate"> Actualización</a></li>
+         <li ><a href="/System/ManageRutas"> Rutas</a></li>
+         <li ><a href="/System/BBITAdmin"> BestBuy <br /> Intertiendas</a></li>
+         <li ><a href="/System/Mifel_Sucursales"> Mifel <br /> Sucursales</a></li>
+         <li ><a href="/System/EmpresaImport"> Importación <br /> Empresa</a> </li>
+         <li ><a href="/System/Updates/Push2GOM"> Importación <br /> 2GOM Citas</a></li>
+         <li ><a href="/System/Updates/ContratoAsignacion"> Reasignación de  <br /> contrato</a></li>
+
+         <li ><a href="/Sepomex/Empresas"> SEPOMEX <br /> Empresas</a></li>
+         <li ><a href="/Sepomex/Import_Permissions"> SEPOMEX <br /> Usuarios</a></li>
+         <li ><a href="/Sepomex/Import_Data"> SEPOMEX <br /> Importación</a></li>
+         <li ><a href="/Sepomex/Export"> SEPOMEX <br /> Reporte</a></li>
+         <li ><a href="/System/Anomalias_Import.vbhtml"> Importación <br /> de anomalías</a></li>
+        </ul>
+    </div>
+   
+
+ <div id="MnuContainer" class="MenuContainer">
+  <div id="Cnt00" class="MenuContent">
+   <div class="ContainerTitle">Envio</div>
+   <div class="Section_2Col">
+    <div class="Col1">
+     <div class="ColTitle">Datos generales<hr /></div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Estatus :&nbsp</div>
+  <div class="FieldValue Light">Entregado                                         </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Empresa :&nbsp</div>
+  <div class="FieldValue">BES Servicios</div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Contrato :&nbsp</div>
+  <div class="FieldValue">BES STORI 16 ABRIL 21</div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">No. Tracking :&nbsp</div>
+  <div class="FieldValue">BES16042100BE0113</div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">ODT/PO :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="NoGuia" name="NoGuia" value="STO08042100BL0004" oninput="$('#Change_NoGuia').css('display','block');" />
+   
+  </div>
+  <div id="Change_NoGuia" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_NoGuia');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_NoGuia', 'NoGuia', 'STO08042100BL0004');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">No. Foraneo :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="NoForaneo" name="NoForaneo" value="" oninput="$('#Change_NoForaneo').css('display','block');" />
+   
+  </div>
+  <div id="Change_NoForaneo" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_NoForaneo');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_NoForaneo', 'NoForaneo', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Observaciones :&nbsp</div>
+  <div class="FieldValue">
+   <TextArea id="Observaciones" name="Observaciones" oninput="$('#Change_Observaciones').css('display','block');"></TextArea>
+  </div>
+  <div id="Change_Observaciones" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Observaciones');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Observaciones', 'Observaciones', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Tookan ID :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="TookanID" name="TookanID" value="" oninput="$('#Change_TookanID').css('display','block');" />
+   
+  </div>
+  <div id="Change_TookanID" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_TookanID');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_TookanID', 'TookanID', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">DHL ID :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="DHLID" name="DHLID" value="" oninput="$('#Change_DHLID').css('display','block');" />
+   
+  </div>
+  <div id="Change_DHLID" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_DHLID');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_DHLID', 'DHLID', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Estafeta ID :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="EstafetaID" name="EstafetaID" value="" oninput="$('#Change_EstafetaID').css('display','block');" />
+   
+  </div>
+  <div id="Change_EstafetaID" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_EstafetaID');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_EstafetaID', 'EstafetaID', '');"/>
+  </div>
+ </div>
+
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Recolecci&#243;n en :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="GatherInformation" name="GatherInformation" value="                                                  " oninput="$('#Change_GatherInformation').css('display','block');" />
+   
+  </div>
+  <div id="Change_GatherInformation" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_GatherInformation');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_GatherInformation', 'GatherInformation', '                                                  ');"/>
+  </div>
+ </div>
+
+
+     <div class="FieldRow">
+
+     </div>
+     <div style="clear:both;">
+     </div>
+
+     <div style="clear:both;">
+     </div>
+
+
+
+     <div style="clear:both;">
+     </div>
+    </div>
+    <div Class="Col1">
+     <div Class="ColTitle">Operación<hr /></div>
+     <input type="hidden" id="SendMail" name="SendMail" value="" />
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Creaci&#243;n                                           :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        2021/04/16 07:15:11 PM
+        <a alt="EventEdit" href="/System/Envios/Event_Edit/939597/1">
+         <img alt="Editar Evento" src="/Content/icons/application_edit.png" />
+        </a>
+        <div onclick="SendEMail(14138671);"><img alt="SendMail" src="/Content/icons/email.png" /></div>
+       </div>
+       <div>                                                                                                                                                                                                                                                          </div>
+                           
+    
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Recibido mensajeria :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        2021/04/16 07:46:36 PM
+        <a alt="EventEdit" href="/System/Envios/Event_Edit/939597/2">
+         <img alt="Editar Evento" src="/Content/icons/application_edit.png" />
+        </a>
+        <div onclick="SendEMail(14138672);"><img alt="SendMail" src="/Content/icons/email.png" /></div>
+       </div>
+       <div>Entregado a BES</div>
+                           
+    
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Listo para entrega :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138673" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138673').css('display','block');" onchange="$('#Change_Dt14138673').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138673" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138673" name="Comments_Dt14138673" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138673').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138673').css('display','none'); $('#Dt14138673').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Anomalo :&nbsp</div>
+   <div class="FieldValue">
+ -     
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Primera Visita :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138679" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138679').css('display','block');" onchange="$('#Change_Dt14138679').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138679" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138679" name="Comments_Dt14138679" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV11" name="MTV11">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138679').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138679').css('display','none'); $('#Dt14138679').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Segunda Visita :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138680" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138680').css('display','block');" onchange="$('#Change_Dt14138680').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138680" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138680" name="Comments_Dt14138680" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV12" name="MTV12">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138680').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138680').css('display','none'); $('#Dt14138680').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Entregado                                          :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        2021/04/16 09:19:37 PM
+        <a alt="EventEdit" href="/System/Envios/Event_Edit/939597/5">
+         <img alt="Editar Evento" src="/Content/icons/application_edit.png" />
+        </a>
+        <div onclick="SendEMail(14138675);"><img alt="SendMail" src="/Content/icons/email.png" /></div>
+       </div>
+       <div>Cardenas Rodriguez Estefania</div>
+                               <div>Tipo de entrega: Bajo Puerta                                                                                                                                                                                                                                                    (003)</div>
+         <div>
+          Receptor:                                                                                                                                                                                                                                                                  -          </div>
+         <div>
+          Identificación:                                                                                                                                                                                                                                                                 -          </div>
+      
+    
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Cancelado :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138676" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138676').css('display','block');" onchange="$('#Change_Dt14138676').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138676" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138676" name="Comments_Dt14138676" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV6" name="MTV6">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138676').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138676').css('display','none'); $('#Dt14138676').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">No entregado :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138677" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138677').css('display','block');" onchange="$('#Change_Dt14138677').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138677" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138677" name="Comments_Dt14138677" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV7" name="MTV7">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138677').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138677').css('display','none'); $('#Dt14138677').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Devoluci&#243;n en transito :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138681" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138681').css('display','block');" onchange="$('#Change_Dt14138681').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138681" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138681" name="Comments_Dt14138681" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV13" name="MTV13">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138681').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138681').css('display','none'); $('#Dt14138681').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Devuelto :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138682" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138682').css('display','block');" onchange="$('#Change_Dt14138682').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138682" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138682" name="Comments_Dt14138682" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV14" name="MTV14">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138682').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138682').css('display','none'); $('#Dt14138682').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">No Visitado :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138678" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138678').css('display','block');" onchange="$('#Change_Dt14138678').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138678" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138678" name="Comments_Dt14138678" style="width:100%;" /></div>
+        </div>
+         <div>
+          <div class="FieldLabel">Motivo :&nbsp</div>
+          <div class="FieldValue"><select id="MTV10" name="MTV10">
+<option value="0">Selecciona un motivo</option>
+<option value="1">cliente no localizable</option>
+<option value="2">cliente rechaza</option>
+<option value="3">domicilio incorrecto</option>
+<option value="4">domicilio incompleto</option>
+<option value="5">cancelaci&#243;n antes de la cita</option>
+<option value="6">cliente cancela</option>
+<option value="7">no cuenta con identificaci&#243;n</option>
+<option value="8">CLIENTE SE NIEGA A IDENTIFICARSE</option>
+<option value="9">NO HAY QUIEN RECIBA</option>
+<option value="10">PERSONA Y/O ID NO AUTORIZADA</option>
+<option value="11">CAMBIO DE DOMICILIO</option>
+<option value="12">DOMICILIO INCORRECTO O INCOMPLETO</option>
+<option value="13">SIN ACCESO A DOMICILIO</option>
+<option value="14">DESCONOCIDO EN EL DOMICILIO</option>
+<option value="15">CLIENTE FALLECIDO</option>
+<option value="16">NO DESEA LA TARJEA</option>
+<option value="17">CASA ABANDONADA O DESHABITADA</option>
+<option value="18">TC MAL GRABADA Y/O DUPLICADA</option>
+<option value="19">MALTRATO</option>
+<option value="20">ZONA DE ALTO RIESGO</option>
+</select></div>
+         </div>                                           <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138678').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138678').css('display','none'); $('#Dt14138678').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Incidencia :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138683" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138683').css('display','block');" onchange="$('#Change_Dt14138683').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138683" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138683" name="Comments_Dt14138683" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138683').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138683').css('display','none'); $('#Dt14138683').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Reprogramaci&#243;n :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138684" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138684').css('display','block');" onchange="$('#Change_Dt14138684').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138684" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138684" name="Comments_Dt14138684" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138684').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138684').css('display','none'); $('#Dt14138684').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">No Asignado :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138685" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138685').css('display','block');" onchange="$('#Change_Dt14138685').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138685" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138685" name="Comments_Dt14138685" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138685').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138685').css('display','none'); $('#Dt14138685').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Robo/Extrav&#237;o :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138686" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138686').css('display','block');" onchange="$('#Change_Dt14138686').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138686" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138686" name="Comments_Dt14138686" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138686').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138686').css('display','none'); $('#Dt14138686').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Remisi&#243;n con mas 20 d&#237;as sin movimiento :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138687" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138687').css('display','block');" onchange="$('#Change_Dt14138687').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138687" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138687" name="Comments_Dt14138687" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138687').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138687').css('display','none'); $('#Dt14138687').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+ 
+  <div class="FieldRow">
+   <div class="FieldLabel">Facturado :&nbsp</div>
+   <div class="FieldValue">
+      
+       <div>
+        <input type="datetime-local" id="Dt@Name" name="Dt14138688" value="0001/01/01 12:00:00 AM" data-lang="es-MX" oninput="$('#Change_Dt14138688').css('display','block');" onchange="$('#Change_Dt14138688').css('display','block');" />
+       </div>
+       <div id="Change_Dt14138688" class="FieldAction">
+        <div>
+         <div>Comentario:</div>
+         <div><input type="text" id="Comments_Dt14138688" name="Comments_Dt14138688" style="width:100%;" /></div>
+        </div>
+        <div>
+         <img alt="Aceptar" src="/Content/icons/accept.png" onclick="$('#Change_Dt14138688').css('display','none'); document.getElementById('Frm01').submit();" />
+         <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="$('#Change_Dt14138688').css('display','none'); $('#Dt14138688').val('');" />
+        </div>
+       </div>
+
+           
+   </div>
+  </div>
+ 
+      <div style="clear:both;">
+      </div>
+
+    </div>
+   </div>
+   <div Class="Section_2Col">
+    <div Class="Col1">
+     <div Class="ColTitle">Destinatario<hr /></div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Nombre :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Nombre" name="Nombre" value="ESTEFANIA CARDENAS RODRIGUEZ" oninput="$('#Change_Nombre').css('display','block');" />
+   
+  </div>
+  <div id="Change_Nombre" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Nombre');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Nombre', 'Nombre', 'ESTEFANIA CARDENAS RODRIGUEZ');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">E-Mail :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="EMail" name="EMail" value="" oninput="$('#Change_EMail').css('display','block');" />
+   
+  </div>
+  <div id="Change_EMail" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_EMail');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_EMail', 'EMail', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">C.P. :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="CP" name="CP" value="" oninput="$('#Change_CP').css('display','block');" />
+   
+  </div>
+  <div id="Change_CP" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_CP');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_CP', 'CP', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Calle :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Calle" name="Calle" value="calle 7 priv San Juan,8,Agr&#237;cola Pantitl&#225;n,Iztacalco,CMX,08100" oninput="$('#Change_Calle').css('display','block');" />
+   
+  </div>
+  <div id="Change_Calle" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Calle');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Calle', 'Calle', 'calle 7 priv San Juan,8,Agr&#237;cola Pantitl&#225;n,Iztacalco,CMX,08100');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">No. Exterior :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="NoExt" name="NoExt" value="" oninput="$('#Change_NoExt').css('display','block');" />
+   
+  </div>
+  <div id="Change_NoExt" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_NoExt');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_NoExt', 'NoExt', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">No. Interior :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="NoInt" name="NoInt" value="" oninput="$('#Change_NoInt').css('display','block');" />
+   
+  </div>
+  <div id="Change_NoInt" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_NoInt');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_NoInt', 'NoInt', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Estado :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Estado" name="Estado" value="" oninput="$('#Change_Estado').css('display','block');" />
+   
+  </div>
+  <div id="Change_Estado" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Estado');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Estado', 'Estado', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Municipio :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Municipio" name="Municipio" value="" oninput="$('#Change_Municipio').css('display','block');" />
+   
+  </div>
+  <div id="Change_Municipio" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Municipio');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Municipio', 'Municipio', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Colonia :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Colonia" name="Colonia" value="" oninput="$('#Change_Colonia').css('display','block');" />
+   
+  </div>
+  <div id="Change_Colonia" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Colonia');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Colonia', 'Colonia', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Direccion :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Direccion" name="Direccion" value="" oninput="$('#Change_Direccion').css('display','block');" />
+   
+  </div>
+  <div id="Change_Direccion" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Direccion');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Direccion', 'Direccion', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Tel. Fijo :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="TFijo" name="TFijo" value="" oninput="$('#Change_TFijo').css('display','block');" />
+   
+  </div>
+  <div id="Change_TFijo" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_TFijo');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_TFijo', 'TFijo', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Tel. Celular :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="TCelular" name="TCelular" value="" oninput="$('#Change_TCelular').css('display','block');" />
+   
+  </div>
+  <div id="Change_TCelular" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_TCelular');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_TCelular', 'TCelular', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Observaciones :&nbsp</div>
+  <div class="FieldValue">
+   <TextArea id="DObsservaciones" name="DObsservaciones" oninput="$('#Change_DObsservaciones').css('display','block');"></TextArea>
+  </div>
+  <div id="Change_DObsservaciones" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_DObsservaciones');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_DObsservaciones', 'DObsservaciones', '');"/>
+  </div>
+ </div>
+
+    </div>
+    <div Class="Col1">
+     <div Class="ColTitle">Datos del paquete<hr /></div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Contenido :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Contenido" name="Contenido" value="" oninput="$('#Change_Contenido').css('display','block');" />
+   
+  </div>
+  <div id="Change_Contenido" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Contenido');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Contenido', 'Contenido', '');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Cantidad :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Qty" name="Qty" value="1.0000" oninput="$('#Change_Qty').css('display','block');" />
+   
+  </div>
+  <div id="Change_Qty" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Qty');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Qty', 'Qty', '1.0000');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Empaque :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Packing" name="Packing" value="SOBRE" oninput="$('#Change_Packing').css('display','block');" />
+   
+  </div>
+  <div id="Change_Packing" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Packing');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Packing', 'Packing', 'SOBRE');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Valor :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Valor" name="Valor" value="0.0000" oninput="$('#Change_Valor').css('display','block');" />
+   
+  </div>
+  <div id="Change_Valor" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Valor');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Valor', 'Valor', '0.0000');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Peso :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Peso" name="Peso" value="0.0000" oninput="$('#Change_Peso').css('display','block');" />
+   
+  </div>
+  <div id="Change_Peso" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Peso');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Peso', 'Peso', '0.0000');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Altura :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Alto" name="Alto" value="0.0000" oninput="$('#Change_Alto').css('display','block');" />
+   
+  </div>
+  <div id="Change_Alto" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Alto');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Alto', 'Alto', '0.0000');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Ancho :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Ancho" name="Ancho" value="0.0000" oninput="$('#Change_Ancho').css('display','block');" />
+   
+  </div>
+  <div id="Change_Ancho" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Ancho');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Ancho', 'Ancho', '0.0000');"/>
+  </div>
+ </div>
+
+     <div class="FieldRow">
+  <div class="FieldLabel">Largo :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="Largo" name="Largo" value="0.0000" oninput="$('#Change_Largo').css('display','block');" />
+   
+  </div>
+  <div id="Change_Largo" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Largo');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Largo', 'Largo', '0.0000');"/>
+  </div>
+ </div>
+
+    </div>
+   </div>
+   <div Class="Section_2Col">
+    <div Class="Col1">
+     <div Class="ColTitle">Comentarios<hr /></div>
+     <div class="FieldRow">
+  <div class="FieldLabel">Comentario :&nbsp</div>
+  <div class="FieldValue">
+   <TextArea id="Comentario" name="Comentario" oninput="$('#Change_Comentario').css('display','block');"></TextArea>
+  </div>
+  <div id="Change_Comentario" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_Comentario');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_Comentario', 'Comentario', '');"/>
+  </div>
+ </div>
+
+     
+    </div>
+    <div Class="Col1">
+     <div Class="ColTitle">Anomalias<hr /></div>
+     <div>
+  <div id="CreateAnomalia" style="clear:both;">
+   <div id="BtnAnomalia" class="Button" onclick="$('#AnomaliaCapture').css('display','block'); $('#CreateAnomalia').css('display','none');">Reportar Anomalia</div>
+  </div>
+ <div id="AnomaliaCapture"style="display:none;">
+  <div class="FieldRow">
+  <div class="FieldLabel">Raz&#243;n :&nbsp</div>
+  <div class="FieldValue">
+   <input type = "text" id="RazonInput" name="RazonInput" value="" oninput="$('#Change_RazonInput').css('display','block');" />
+   
+  </div>
+  <div id="Change_RazonInput" class="FieldAction">
+   <img alt="Aceptar" src="/Content/icons/accept.png" onclick="Accept('Change_RazonInput');"/>
+   <img alt="Cancelar" src="/Content/icons/cancel.png" onclick="Cancel('Change_RazonInput', 'RazonInput', '');"/>
+  </div>
+ </div>
+
+ </div>
+</div>
+
+    </div>
+   </div>
+
+   <div Class="Section_2Col">
+    <div Class="Col1">
+     <div Class="Button" onclick="Envio_Delete();">Borrar Envio</div>
+     <div></div>
+    </div>
+   </div>
+
+
+  </div>
+ </div>
+
+</form>
+  
+   </div>
+   <div id="Footer">Hand2Hand Logistics &copy; 2015</div>
+  </div>       
+ </body>
+</html>
