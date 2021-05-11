@@ -3,30 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H2H-Inicio de sesión</title>
-    <link rel="stylesheet" href="inicio.css">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="/Inicio/estilo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-    <figure>
-        <img src="./Logo_de_H2H.png" alt="Logo de Hand2Hand" class="logo">
+    <img src="/Inicio/Fondo.png" alt="fondo" class="bg">
+
+    <figure class="logo">
+        <img src="./Logo_de_H2H.png" alt="Logo de Hand2Hand">
     </figure>
 
-    <header>
         <h1>Bienvenido</h1>
-        <h2>Ingresa tus datos para acceder</h2>
-    </header>
+    
         <form action="">
-            <label class="form" for="Correo electrónico">
-            <input type="email" name="Correo electrónico" id="nombre" required placeholder="Correo electrónico">
+            <label id="form" for="Correo electrónico">
+            <input class="campo" type="email" name="Correo electrónico" id="nombre" required placeholder="Correo electrónico">
             </label>
-            <label class="form" for="Contraseña">
-            <input type="password" name="Contraseña" id="Contraseña" required placeholder="Contraseña">
-            </label>
-            <input class="button" type="submit">
         </form>
-    <div>
+
+        <form action="">
+            <label id="form" for="Contraseña">
+                <input class="campo" type="password" name="Contraseña" id="Contraseña" required placeholder="Contraseña">
+            </label>
+        </form>
+
+        <!-- <form action="">
+            <input class="button__inactive" type="submit" value="entrar">
+        </form> -->
+
+        <form action="">
+            <input class="button__active" type="submit" value="entrar">
+        </form>
+
+    <p>
         <a class="reset-password" href="/Public/Recovery">¿Olvidaste tu contraseña?</a>
-    </div>
+    </p>
+    
 </body>
 </html>
