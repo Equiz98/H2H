@@ -1,0 +1,99 @@
+.ContendorIncio{
+    max-width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.Contenedorh2hdos{
+    width: 390px;
+    height: 100vh;
+    background-image: url(Imagen1.svg);
+    margin-left: auto;
+}
+
+.Contendorh2huno{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+.LogoH2HInicio, h1, h2, .FormInicio, .reset-password{
+    width: 100%;
+    text-align: center;
+    font-family: 'Plato';
+    color: #5e5e5e;
+}
+
+.FormInicio{
+    display: flex;
+    flex-direction: column;
+}
+
+.form{
+    margin: 1% 0;
+}
+
+.form input{
+width: 220px;
+border-radius: 3px;
+background: none;
+border: 1px solid #B7BABD;
+font-family: 'Plato';
+font-weight: bold;
+color: #B7BABD;
+}
+
+/* .form input_active{
+    width: 220px;
+    border-radius: 3px;
+    background: none;
+    border: 1px solid #5e5e5e;
+    font-family: 'Plato';
+    font-weight: bold;
+    color: #5e5e5e;
+    } */
+
+
+
+.button{
+    background: #878787;
+    width: 100px;
+    height: 30px;
+    margin-left: 45%;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    border-radius: 3px;
+    color: #fff;
+    font-family: 'Plato';
+    font-weight: bold;
+    border: none;
+
+}
+
+/* .button_active{
+    background: #F45302;
+    width: 100px;
+    height: 30px;
+    margin-left: 45%;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    border-radius: 3px;
+    color: #fff;
+    font-family: 'Plato';
+    font-weight: bold;
+    border: none;
+
+} */
+
+
+
+
+
+
+
+
+
