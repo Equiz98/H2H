@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="/Inicio/estilo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <img src="/Inicio/Fondo.png" alt="fondo" class="bg">
+
+    <figure class="logo">
+        <img src="./Logo_de_H2H.png" alt="Logo de Hand2Hand">
+    </figure>
+
+        <h1>Bienvenido</h1>
+    
+        <form action="">
+            <label id="form" for="Correo electrónico">
+            <input class="campo" type="email" name="Correo electrónico" id="nombre" required placeholder="Correo electrónico">
+            </label>
+        </form>
+
+        <form action="">
+            <label id="form" for="Contraseña">
+                <input class="campo" type="password" name="Contraseña" id="Contraseña" required placeholder="Contraseña">
+            </label>
+        </form>
+
+        <!-- <form action="">
+            <input class="button__inactive" type="submit" value="entrar">
+        </form> -->
+
+        <form action="">
+            <input class="button__active" type="submit" value="entrar">
+        </form>
+
+    <p>
+        <a class="reset-password" href="/Public/Recovery">¿Olvidaste tu contraseña?</a>
+    </p>
+    
+</body>
+</html>
